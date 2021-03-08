@@ -1,0 +1,18 @@
+### HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.factorypath
+.settings
+.springBeans
+.sts4-cache
+
+## HSQLDB ###
+test.lck
+test.log
+test.properties
+test.tmp
