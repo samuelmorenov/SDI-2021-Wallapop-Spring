@@ -41,6 +41,11 @@ public class PO_View {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina("text", p.getString(key, locale), getTimeout());
 		return elementos;
 	}
+	
+	static public void checkNoKey(String key, int locale) {
+		SeleniumUtils.EsperaCargaPaginaNoTexto(p.getString(key, locale), getTimeout());
+	}
+	
 	/**
 	 *  Espera por la visibilidad de un elemento/s en la vista actualmente cargandose en driver..
 	 * 
