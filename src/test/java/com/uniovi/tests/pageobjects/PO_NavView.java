@@ -42,6 +42,7 @@ public class PO_NavView extends PO_View {
 	 * @param textLanguage: el texto que aparece en el enlace de idioma ("English" o
 	 *        "Spanish")
 	 */
+	@Deprecated
 	public static void changeIdiom(String textLanguage) {
 		// clickamos la opción Idioma.
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina("id", "btnLanguage", getTimeout());

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class PO_Search extends PO_NavView {
-
+	@Deprecated
 	static public void search(String text) {
 
 		WebElement busqueda = driver.findElement(By.name("searchText"));

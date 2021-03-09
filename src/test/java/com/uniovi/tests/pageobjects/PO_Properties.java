@@ -9,6 +9,7 @@ public class PO_Properties {
 		return SPANISH;
 	}
 
+	@Deprecated
 	public static int getENGLISH() {
 		return ENGLISH;
 	}
@@ -18,6 +19,7 @@ public class PO_Properties {
 	static int ENGLISH = 1;
 	static Locale[] idioms = new Locale[] { new Locale("ES"), new Locale("EN") };
 
+	@Deprecated
 	public PO_Properties(String Path) {
 		this.Path = Path;
 	}

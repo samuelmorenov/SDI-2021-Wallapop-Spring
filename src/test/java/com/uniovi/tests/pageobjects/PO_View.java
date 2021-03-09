@@ -9,24 +9,23 @@ import com.uniovi.tests.DriverSingleton;
 import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_View {
-	
+	@Deprecated
 	protected static PO_Properties p = new PO_Properties("messages");
 	protected static int timeout = 2;
 
 	protected static WebDriver driver = DriverSingleton.getDriver();
-
 	public static int getTimeout() {
 		return timeout;
 	}
-
+	@Deprecated
 	public static void setTimeout(int timeout) {
 		PO_View.timeout = timeout;
 	}
-
+	@Deprecated
 	public static PO_Properties getP() {
 		return p;
 	}
-
+	@Deprecated
 	public static void setP(PO_Properties p) {
 		PO_View.p = p;
 	}
@@ -50,6 +49,7 @@ public class PO_View {
 	 * @param text:
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
+	@Deprecated
 	static public List<WebElement> checkElement(String type, String text) {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(type, text, getTimeout());
 		return elementos;		
