@@ -4,7 +4,11 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import static org.junit.Assert.fail;
+import com.uniovi.services.data.UserList;
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio02_Tests extends BaseTests {
@@ -12,13 +16,17 @@ public class Ejercicio02_Tests extends BaseTests {
 	/** Inicio de sesión con datos válidos (administrador). */
 	@Test
 	public void Prueba_05() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
+		PO_View.checkKey("list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar). */
 	@Test
 	public void Prueba_06() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_View.checkKey("list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -27,7 +35,9 @@ public class Ejercicio02_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_07() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm("", "");
+		PO_View.checkKey("Error.login", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -36,7 +46,9 @@ public class Ejercicio02_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_08() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, "incorrecta");
+		PO_View.checkKey("Error.login", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -45,7 +57,9 @@ public class Ejercicio02_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_09() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm("email@incorrecto.com", UserList.usuarios(0).password);
+		PO_View.checkKey("Error.login", PO_Properties.getSPANISH());
 	}
 
 }

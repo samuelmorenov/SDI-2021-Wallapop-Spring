@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class PO_LoginView extends PO_NavView {
-	@Deprecated
 	static public void fillForm(String emailp, String passwordp) {
 
 		WebElement email = driver.findElement(By.name("username"));
