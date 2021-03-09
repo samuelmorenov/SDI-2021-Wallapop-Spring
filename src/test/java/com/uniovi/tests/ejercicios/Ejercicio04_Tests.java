@@ -4,7 +4,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import static org.junit.Assert.fail;
+import com.uniovi.services.data.UserList;
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio04_Tests extends BaseTests {
@@ -15,7 +18,12 @@ public class Ejercicio04_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_12() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_View.checkElement("text", UserList.usuarios(1).email);
+		PO_View.checkElement("text", UserList.usuarios(2).email);
+		PO_View.checkElement("text", UserList.usuarios(3).email);
+		PO_View.checkElement("text", UserList.usuarios(4).email);
 	}
 
 }

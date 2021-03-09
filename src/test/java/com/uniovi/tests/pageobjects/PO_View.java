@@ -54,7 +54,6 @@ public class PO_View {
 	 * @param text:
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
-	@Deprecated
 	static public List<WebElement> checkElement(String type, String text) {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(type, text, getTimeout());
 		return elementos;		
