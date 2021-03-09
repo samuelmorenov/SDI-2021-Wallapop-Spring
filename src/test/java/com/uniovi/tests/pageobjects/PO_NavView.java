@@ -1,8 +1,11 @@
 package com.uniovi.tests.pageobjects;
 
 import static org.junit.Assert.assertTrue;
+
 import java.util.List;
-import org.openqa.selenium.*;
+
+import org.openqa.selenium.WebElement;
+
 import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_NavView extends PO_View {
@@ -18,7 +21,7 @@ public class PO_NavView extends PO_View {
 	 * @param textoDestino: texto correspondiente a la búsqueda de la página
 	 *        destino.
 	 */
-	public static void clickOption(WebDriver driver, String textOption, String criterio, String textoDestino) {
+	public static void clickOption(String textOption, String criterio, String textoDestino) {
 		// CLickamos en la opción de registro y esperamos a que se cargue el enlace de
 		// Registro.
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina("@href", textOption, getTimeout());
@@ -39,13 +42,13 @@ public class PO_NavView extends PO_View {
 	 * @param textLanguage: el texto que aparece en el enlace de idioma ("English" o
 	 *        "Spanish")
 	 */
-	public static void changeIdiom(WebDriver driver, String textLanguage) {
+	public static void changeIdiom(String textLanguage) {
 		// clickamos la opción Idioma.
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina("id", "btnLanguage", getTimeout());
 		elementos.get(0).click();
 		// Esperamos a que aparezca el menú de opciones.
 		elementos = SeleniumUtils.EsperaCargaPagina("id", "languageDropdownMenuButton", getTimeout());
-		// SeleniumUtils.esperarSegundos(driver, 2);
+		// SeleniumUtils.esperarSegundos(2);
 		// CLickamos la opción Inglés partiendo de la opción Español
 		elementos = SeleniumUtils.EsperaCargaPagina("id", textLanguage, getTimeout());
 		elementos.get(0).click();
