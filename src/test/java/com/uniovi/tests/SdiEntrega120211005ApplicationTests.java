@@ -12,6 +12,7 @@ import com.uniovi.tests.ejercicios.*;
 @RunWith(Suite.class)
 @SuiteClasses({
 	//*/
+	Adicionales.class,
 	Ejercicio01_Tests.class,
 	Ejercicio02_Tests.class,
 	Ejercicio03_Tests.class,

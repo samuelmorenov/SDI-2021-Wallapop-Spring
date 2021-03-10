@@ -19,7 +19,9 @@ public class Ejercicio04_Tests extends BaseTests {
 	@Test
 	public void Prueba_12() {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		//TODO: Cambiar al administrador
 		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		//TODO: Acceder a la lista de usuarios
 		PO_View.checkElement("text", UserList.usuarios(1).email);
 		PO_View.checkElement("text", UserList.usuarios(2).email);
 		PO_View.checkElement("text", UserList.usuarios(3).email);

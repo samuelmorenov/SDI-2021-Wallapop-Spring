@@ -12,7 +12,7 @@ import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio01_Tests extends BaseTests {
-	
+
 	private static String randomEmail() {
 		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
 	}
@@ -21,9 +21,10 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_01() {
 		PO_HomeView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name,
-				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
-				UserList.usuariosTest(0).password);
+		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
+				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
+		// TODO: Una vez registrado un usuario será autenticado automáticamente
+		// redirigiéndole a la vista de opciones de usuario registrado
 		PO_View.checkKey("list.intro", PO_Properties.getSPANISH());
 	}
 
@@ -49,8 +50,8 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_02_c() {
 		PO_HomeView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, "",
-				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
+		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, "", UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password);
 		PO_View.checkKey("Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
 
@@ -60,9 +61,8 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_03() {
 		PO_HomeView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name,
-				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
-				UserList.usuariosTest(0).password + "e");
+		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
+				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password + "e");
 		PO_View.checkKey("Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 
 	}
