@@ -10,17 +10,19 @@
 			<img src="/img/student-48.png" alt="logo" />
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
+			<!-- Parte izquierda del navegador -->
 			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li><a href="/" th:text="#{nav.inicio}"></a></li>
 				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" th:text="#{nav.gestion.usuarios}"><span
 						class="caret"></span> </a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add" th:text="#{nav.agregar.usuarios}"></a></li>
 						<li><a href="/user/list" th:text="#{nav.listar.usuarios}"></a></li>
 					</ul></li>
 			</ul>
+			<!-- Parte derecha del navegador -->
 			<ul class="nav navbar-nav navbar-right">
+				<!-- Opciones de idioma -->
 				<li class="dropdown"><a id="btnLanguage" href=" #"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-haspopup="true" aria-expanded="false"> <span
@@ -38,6 +40,7 @@
 								th:text="#{language.es}"></span>
 						</a></li>
 					</ul></li>
+				<!-- Opciones de logueo -->
 				<li sec:authorize="!isAuthenticated()"><a href="/signup"
 					th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"></span></a></li>
