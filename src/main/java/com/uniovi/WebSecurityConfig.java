@@ -12,9 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
+import com.uniovi.services.RolesService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	private String User = RolesService.getRoles()[0];
+	private String Admin = RolesService.getRoles()[1];
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -32,13 +38,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup", "/login/**").permitAll()
+			//Opciones publicas
+			.antMatchers("/css/**", "/img/**", "/script/**").permitAll()
+			.antMatchers("/", "/signup", "/login/**").permitAll()
+			//Opciones de Usuario Registrado
+			.antMatchers("/user/profile").hasAnyAuthority(User, Admin)
+			//Opciones de Usuario Administrador
+			.antMatchers("/user/list").hasAuthority(Admin)
+			.antMatchers("/user/delete/**").hasAuthority(Admin)
+			//Opciones de Usuario Estándar
+			.antMatchers("/offer/release").hasAuthority(User)
+			.antMatchers("/offer/buy/**").hasAuthority(User)
+			.antMatchers("/offer/all").hasAuthority(User)
+			.antMatchers("/offer/own").hasAuthority(User)
+			.antMatchers("/offer/bought").hasAuthority(User)
+			//Por defecto			
 			.anyRequest().authenticated()
 				.and()
 		.formLogin()
 			.loginPage("/login")
 			.permitAll()
-			.defaultSuccessUrl("/home")
+			.defaultSuccessUrl("/user/profile")
 			.and()
 		.logout()
 			.permitAll();
