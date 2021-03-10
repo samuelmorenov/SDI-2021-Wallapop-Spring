@@ -7,6 +7,7 @@ import org.junit.runners.MethodSorters;
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -19,13 +20,13 @@ public class Ejercicio04_Tests extends BaseTests {
 	@Test
 	public void Prueba_12() {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
-		//TODO: Cambiar al administrador
-		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
-		//TODO: Acceder a la lista de usuarios
-		PO_View.checkElement("text", UserList.usuarios(1).email);
-		PO_View.checkElement("text", UserList.usuarios(2).email);
-		PO_View.checkElement("text", UserList.usuarios(3).email);
-		PO_View.checkElement("text", UserList.usuarios(4).email);
+		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
+		PO_PrivateView.accederPagina("users-menu", "/user/list");
+		for (int i = 0; i < UserList.maxUser; i++) {
+			PO_View.checkElement("text", UserList.usuarios(i).email);
+			PO_View.checkElement("text", UserList.usuarios(i).name);
+			PO_View.checkElement("text", UserList.usuarios(i).lastName);
+		}
 	}
 
 }

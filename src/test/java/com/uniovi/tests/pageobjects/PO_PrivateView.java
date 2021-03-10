@@ -28,7 +28,6 @@ public class PO_PrivateView extends PO_NavView {
 	static public void logout() {
 		PO_PrivateView.clickOption("logout", "text", "Identifícate");
 	}
-	@Deprecated
 	static public void accederPagina(String lista, String elemento) {
 		List<WebElement> elementos = null;
 		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a

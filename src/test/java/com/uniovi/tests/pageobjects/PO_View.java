@@ -57,4 +57,7 @@ public class PO_View {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(type, text, getTimeout());
 		return elementos;		
 	}
+	static public void checkNoElement(String type, String text) {
+		SeleniumUtils.EsperaCargaPaginaNoTexto(text, getTimeout());
+	}
 }
