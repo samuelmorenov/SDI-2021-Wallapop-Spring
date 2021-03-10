@@ -47,11 +47,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/user/list").hasAuthority(Admin)
 			.antMatchers("/user/delete/**").hasAuthority(Admin)
 			//Opciones de Usuario Estándar
-			.antMatchers("/offer/release").hasAuthority(User)
-			.antMatchers("/offer/buy/**").hasAuthority(User)
+			.antMatchers("/offer/post").hasAuthority(User)
+			.antMatchers("/offer/buy").hasAuthority(User)
 			.antMatchers("/offer/all").hasAuthority(User)
 			.antMatchers("/offer/own").hasAuthority(User)
-			.antMatchers("/offer/bought").hasAuthority(User)
+			.antMatchers("/offer/purchased").hasAuthority(User)
 			//Por defecto			
 			.anyRequest().authenticated()
 				.and()
