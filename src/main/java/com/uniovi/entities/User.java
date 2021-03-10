@@ -1,9 +1,13 @@
 package com.uniovi.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -22,6 +26,14 @@ public class User {
 	@Transient // propiedad que no se almacena e la tabla.
 	private String passwordConfirm;
 
+	private double money;
+
+	@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+	private Set<Offer> created;
+
+	@OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
+	private Set<Offer> bought;
+
 	public User(String email, String name, String lastName) {
 		super();
 		this.email = email;
@@ -30,6 +42,7 @@ public class User {
 	}
 
 	public User() {
+		this.money = 100L;
 	}
 
 	public long getId() {
@@ -90,6 +103,30 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	public Set<Offer> getCreated() {
+		return created;
+	}
+
+	public void setCreated(Set<Offer> created) {
+		this.created = created;
+	}
+
+	public Set<Offer> getBought() {
+		return bought;
+	}
+
+	public void setBought(Set<Offer> bought) {
+		this.bought = bought;
 	}
 
 }
