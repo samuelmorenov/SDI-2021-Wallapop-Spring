@@ -9,7 +9,6 @@ import com.uniovi.tests.DriverSingleton;
 import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_View {
-	@Deprecated
 	protected static PO_Properties p = new PO_Properties("messages");
 	protected static int timeout = 2;
 

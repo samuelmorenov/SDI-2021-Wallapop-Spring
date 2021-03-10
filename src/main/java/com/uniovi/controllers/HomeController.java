@@ -27,7 +27,7 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String index() {
-		return "index";
+		return "redirect:/user/profile";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -45,7 +45,7 @@ public class HomeController {
 		user.setRole(RolesService.getRoles()[0]);
 		usersService.addUser(user);
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "redirect:home";
+		return "redirect:/user/profile";
 	}
 
 	@RequestMapping(value = "/login")

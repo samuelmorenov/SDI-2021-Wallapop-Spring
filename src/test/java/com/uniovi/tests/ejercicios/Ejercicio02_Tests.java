@@ -18,9 +18,7 @@ public class Ejercicio02_Tests extends BaseTests {
 	public void Prueba_05() {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
-		// TODO: En caso de que el inicio de sesión sea correcto, se debe redirigir al
-		// usuario a la vista que contenga las opciones del perfil Administrador.
-		PO_View.checkKey("list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar). */
@@ -28,9 +26,7 @@ public class Ejercicio02_Tests extends BaseTests {
 	public void Prueba_06() {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
-		// TODO: En caso de que el inicio de sesión sea correcto, se debe redirigir al
-		// usuario a la vista que contenga las opciones del perfil Usuario.
-		PO_View.checkKey("list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
 	}
 
 	/**

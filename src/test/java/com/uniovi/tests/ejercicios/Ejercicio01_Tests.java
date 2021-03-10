@@ -23,9 +23,7 @@ public class Ejercicio01_Tests extends BaseTests {
 		PO_HomeView.clickOption("signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
-		// TODO: Una vez registrado un usuario será autenticado automáticamente
-		// redirigiéndole a la vista de opciones de usuario registrado
-		PO_View.checkKey("list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: email vacío */
