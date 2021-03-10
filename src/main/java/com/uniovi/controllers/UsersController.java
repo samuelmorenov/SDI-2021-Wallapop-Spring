@@ -42,4 +42,9 @@ public class UsersController {
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/list";
 	}
+	
+	@RequestMapping("/user/profile")
+	public String index() {
+		return "user/profile";
+	}
 }
