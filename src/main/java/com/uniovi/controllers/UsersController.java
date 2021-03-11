@@ -9,8 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.User;
 import com.uniovi.services.UsersService;
@@ -24,9 +24,11 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping("/user/delete/{id}")
-	public String user_delete_id(@PathVariable Long id) {
-		usersService.deleteUser(id);
+	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+	public String user_delete_id(Model model) {
+		
+		//TODO: Obtener la lista de marcados y borrarlos
+		
 		return "redirect:/user/list";
 	}
 
