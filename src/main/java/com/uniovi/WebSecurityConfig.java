@@ -18,8 +18,8 @@ import com.uniovi.services.RolesService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	private String User = RolesService.getRoles()[0];
-	private String Admin = RolesService.getRoles()[1];
+	private static final String User = RolesService.getRoles()[0];
+	private static final String Admin = RolesService.getRoles()[1];
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
