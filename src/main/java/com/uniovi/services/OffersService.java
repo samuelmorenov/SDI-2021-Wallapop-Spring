@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uniovi.entities.Offer;
 import com.uniovi.repositories.OffersRepository;
 
 @Service
@@ -19,4 +20,9 @@ public class OffersService {
 
 	@Autowired
 	private HttpSession httpSession;
+
+	public void addOffer(Offer offer) {
+		// TODO Auto-generated method stub
+		
+	}
 }
