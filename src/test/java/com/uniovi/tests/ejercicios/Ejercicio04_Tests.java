@@ -21,7 +21,7 @@ public class Ejercicio04_Tests extends BaseTests {
 	public void Prueba_12() {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
-		PO_PrivateView.accederPagina("users-menu", "/user/list");
+		PO_PrivateView.accederPagina("user-list", "/user/list");
 		for (int i = 0; i < UserList.maxUser; i++) {
 			PO_View.checkElement("text", UserList.usuarios(i).email);
 			PO_View.checkElement("text", UserList.usuarios(i).name);

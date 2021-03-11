@@ -12,13 +12,38 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<!-- Parte izquierda del navegador -->
 			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
-				<li><a href="/" th:text="#{nav.inicio}"></a></li>
-				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{nav.gestion.usuarios}"><span
-						class="caret"></span> </a>
+			
+				<!-- Perfil de usuario -->
+				<li id="user-profile">
+					<a href="/user/profile" th:text="#{nav.user.profile}"></a>
+				</li>
+				
+				<!-- Gestion de usuarios -->
+				<li id="user-list" sec:authorize="hasRole('ROLE_ADMIN')">
+					<a href="/user/list" th:text="#{nav.user.list}"></a>
+				</li>
+				
+				<!-- Gestion de ofertas -->		
+				<li id="offer-menu" class="dropdown" sec:authorize="hasRole('ROLE_USER')">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.offer}">
+						<span class="caret"></span>
+					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/list" th:text="#{nav.listar.usuarios}"></a></li>
-					</ul></li>
+						<li>
+							<a href="/offer/post" th:text="#{nav.offer.post}"></a>
+						</li>
+						<li>
+							<a href="/offer/all" th:text="#{nav.offer.all}"></a>
+						</li>
+						<li>
+							<a href="/offer/own" th:text="#{nav.offer.own}"></a>
+						</li>
+						<li>
+							<a href="/offer/purchased" th:text="#{nav.offer.purchased}"></a>
+						</li>
+					</ul>
+				</li>
+				
 			</ul>
 			<!-- Parte derecha del navegador -->
 			<ul class="nav navbar-nav navbar-right">
