@@ -1,7 +1,5 @@
 package com.uniovi.tests.ejercicios;
 
-import static org.junit.Assert.fail;
-
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -41,7 +39,16 @@ public class Ejercicio08_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_20() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+		PO_PostView.addNew("Oferta Test Prueba_20 1");
+		PO_PostView.addNew("Oferta Test Prueba_20 2");
+
+		PO_NavView.accederPagina("offer-menu", "/offer/own");
+		List<WebElement> botones = PO_View.checkElement("class", "btn");
+		WebElement botonABorrar = botones.get(botones.size()-1);
+		String id = botonABorrar.getAttribute("id");
+		botonABorrar.click();
+		PO_View.checkNoElement("id", id);
 	}
 
 }
