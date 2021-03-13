@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
-import com.uniovi.tests.util.SeleniumUtils;
-
 public class PO_NavView extends PO_View {
 
 	/**
@@ -24,15 +22,25 @@ public class PO_NavView extends PO_View {
 	public static void clickOption(String textOption, String criterio, String textoDestino) {
 		// CLickamos en la opción de registro y esperamos a que se cargue el enlace de
 		// Registro.
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina("@href", textOption, getTimeout());
+		List<WebElement> elementos = PO_View.checkElement("@href", textOption);
 		// Tiene que haber un sólo elemento.
 		assertTrue(elementos.size() == 1);
 		// Ahora lo clickamos
 		elementos.get(0).click();
 		// Esperamos a que sea visible un elemento concreto
-		elementos = SeleniumUtils.EsperaCargaPagina(criterio, textoDestino, getTimeout());
+		elementos = PO_View.checkElement(criterio, textoDestino);
 		// Tiene que haber un sólo elemento.
 		assertTrue(elementos.size() == 1);
+	}
+	
+	static public void accederPagina(String lista, String elemento) {
+		List<WebElement> elementos = null;
+		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
+		elementos = PO_View.checkElement("free", "//li[contains(@id, '" + lista + "')]/a");
+		elementos.get(0).click();
+		// Pinchamos en la opción de lista de notas.
+		elementos = PO_View.checkElement("free", "//a[contains(@href,'" + elemento + "')]");
+		elementos.get(0).click();
 	}
 
 	/**
@@ -45,13 +53,13 @@ public class PO_NavView extends PO_View {
 	@Deprecated
 	public static void changeIdiom(String textLanguage) {
 		// clickamos la opción Idioma.
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina("id", "btnLanguage", getTimeout());
+		List<WebElement> elementos = PO_View.checkElement("id", "btnLanguage");
 		elementos.get(0).click();
 		// Esperamos a que aparezca el menú de opciones.
-		elementos = SeleniumUtils.EsperaCargaPagina("id", "languageDropdownMenuButton", getTimeout());
+		elementos = PO_View.checkElement("id", "languageDropdownMenuButton");
 		// SeleniumUtils.esperarSegundos(2);
 		// CLickamos la opción Inglés partiendo de la opción Español
-		elementos = SeleniumUtils.EsperaCargaPagina("id", textLanguage, getTimeout());
+		elementos = PO_View.checkElement("id", textLanguage);
 		elementos.get(0).click();
 	}
 }

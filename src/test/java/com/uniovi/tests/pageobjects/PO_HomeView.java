@@ -4,13 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 
-import com.uniovi.tests.util.SeleniumUtils;
-
 public class PO_HomeView extends PO_NavView {
 	@Deprecated
 	static public void checkWelcome(int language) {
 		// Esperamos a que se cargue el saludo de bienvenida en Español
-		SeleniumUtils.EsperaCargaPagina("text", p.getString("welcome.message", language), getTimeout());
+		PO_View.checkElement("text", p.getString("welcome.message", language));
 	}
 
 	@Deprecated

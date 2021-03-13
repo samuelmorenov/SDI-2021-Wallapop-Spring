@@ -8,9 +8,9 @@ import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
-import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
+import com.uniovi.tests.pageobjects.formularios.PO_PrivateView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Adicionales extends BaseTests {
@@ -48,7 +48,7 @@ public class Adicionales extends BaseTests {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
 		PO_PrivateView.accederPagina("users-menu", "/user/list");
-		PO_View.checkNoElement("text", UserList.admin.email);
+		PO_View.checkNoText(UserList.admin.email);
 	}
 
 }

@@ -4,7 +4,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -19,8 +18,7 @@ public class Ejercicio03_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_10() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_LoginView.loginUser0();
 		PO_HomeView.clickOption("logout", "class", "btn btn-primary");
 		PO_View.checkKey("login.message", PO_Properties.getSPANISH());
 	}
@@ -31,8 +29,7 @@ public class Ejercicio03_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_11() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_LoginView.loginUser0();
 		PO_HomeView.clickOption("logout", "class", "btn btn-primary");
 		PO_View.checkNoKey("logout.message", PO_Properties.getSPANISH());
 	}

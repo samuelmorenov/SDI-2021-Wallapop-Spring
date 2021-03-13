@@ -16,16 +16,14 @@ public class Ejercicio02_Tests extends BaseTests {
 	/** Inicio de sesión con datos válidos (administrador). */
 	@Test
 	public void Prueba_05() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
+		PO_LoginView.loginAdmin();
 		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar). */
 	@Test
 	public void Prueba_06() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_LoginView.loginUser0();
 		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
 	}
 

@@ -5,8 +5,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
-import com.uniovi.tests.pageobjects.PO_HomeView;
-import com.uniovi.tests.pageobjects.PO_PrivateView;
+import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
@@ -19,9 +18,8 @@ public class Ejercicio04_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_12() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
-		PO_PrivateView.accederPagina("user-list", "/user/list");
+		PO_LoginView.loginAdmin();
+		PO_NavView.accederPagina("user-list", "/user/list");
 		for (int i = 0; i < UserList.maxUser; i++) {
 			PO_View.checkElement("text", UserList.usuarios(i).email);
 			PO_View.checkElement("text", UserList.usuarios(i).name);

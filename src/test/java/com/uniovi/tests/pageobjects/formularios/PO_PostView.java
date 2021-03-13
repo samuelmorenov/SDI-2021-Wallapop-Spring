@@ -25,5 +25,10 @@ public class PO_PostView extends PO_NavView {
 		driver.findElement(boton).click();
 		
 	}
+	
+	public static void addNew(String text) {
+		PO_PrivateView.accederPagina("offer-menu", "/offer/post");
+		PO_PostView.fillForm(text, text+" Descripcion", "10,01");
+	}
 
 }
