@@ -26,7 +26,7 @@ public class User {
 	@Transient // propiedad que no se almacena e la tabla.
 	private String passwordConfirm;
 
-	private double money;
+	private Double money;
 
 	@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
 	private Set<Offer> created;
@@ -39,11 +39,11 @@ public class User {
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
-		this.money = 100;
+		this.money = 100.0;
 	}
 
 	public User() {
-		this.money = 100;
+		this.money = 100.0;
 	}
 
 	public long getId() {
@@ -106,11 +106,11 @@ public class User {
 		this.role = role;
 	}
 
-	public double getMoney() {
+	public Double getMoney() {
 		return money;
 	}
 
-	public void setMoney(double money) {
+	public void setMoney(Double money) {
 		this.money = money;
 	}
 

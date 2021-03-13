@@ -3,6 +3,7 @@ package com.uniovi.controllers;
 import java.security.Principal;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -58,9 +59,11 @@ public class OffersController extends UtilsController {
 			@RequestParam(value = "", required = false) String searchText) {
 
 		// Set active user
-		this.setActiveUser(model);
+		User activeUser = this.setActiveUser(model);
 
 		// Paginacion y busqueda
+		// TODO: Mirar como hacer que se guarde la busqueda y la paginacion entre
+		// paginas
 		Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
 		if (searchText != null && !searchText.isEmpty()) {
 			offers = offersService.getAllOffersByTitle(pageable, searchText);
@@ -72,6 +75,13 @@ public class OffersController extends UtilsController {
 
 		model.addAttribute("offersList", offers.getContent());
 		model.addAttribute("page", offers);
+
+		// TODO: Mirar como internacionalizar los botones
+		List<Offer> offersPurchased = offersService.getPurchasedOffers(activeUser);
+		model.addAttribute("offersPurchased", offersPurchased);
+
+		List<Offer> offersOwn = offersService.getOwnOffers(activeUser);
+		model.addAttribute("offersOwn", offersOwn);
 
 		return "offer/all";
 	}
@@ -96,11 +106,34 @@ public class OffersController extends UtilsController {
 
 	@RequestMapping(value = "/offer/delete", method = RequestMethod.POST)
 	public String offer_delete_POST(@RequestParam Long OfferId, Model model, Principal principal) {
+		// Set active user
+		this.setActiveUser(model);
 
 		Offer offer = offersService.getOfferById(OfferId);
 		offersService.delete(offer);
 
 		return "offer/own";
+	}
+
+	@RequestMapping(value = "/offer/buy", method = RequestMethod.POST)
+	public String offer_buy_POST(@RequestParam Long OfferId, Model model, Principal principal) {
+		// Set active user
+		User activeUser = this.setActiveUser(model);
+
+		Offer offer = offersService.getOfferById(OfferId);
+
+		boolean correcto = offersService.buy(activeUser, offer);
+
+		// Set active user
+		this.setActiveUser(model);
+		model.addAttribute("offer", new Offer());
+
+		if (!correcto) {
+			return "offer/all";
+		}
+
+		return "redirect:/offer/purchased";
+
 	}
 
 }

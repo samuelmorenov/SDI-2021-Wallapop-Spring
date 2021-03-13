@@ -14,11 +14,16 @@ import org.springframework.stereotype.Service;
 import com.uniovi.entities.Offer;
 import com.uniovi.entities.User;
 import com.uniovi.repositories.OffersRepository;
+import com.uniovi.repositories.UsersRepository;
 
 @Service
 public class OffersService {
+
 	@Autowired
 	private OffersRepository offersRepository;
+
+	@Autowired
+	private UsersRepository usersRepository;
 
 	@PostConstruct
 	public void init() {
@@ -53,5 +58,32 @@ public class OffersService {
 
 	public void delete(Offer offer) {
 		offersRepository.delete(offer);
+	}
+
+	public boolean buy(User activeUser, Offer offer) {
+
+		if (activeUser.getMoney() < offer.getPrice()) {
+			return false;
+		}
+		if (offer.getStatus().equals(Offer.OfferStatus.SOLDOUT)) {
+			return false;
+		}
+		if (activeUser.getId() == offer.getCreator().getId()) {
+			return false;
+		}
+		if (offer.getBuyer() != null) {
+			return false;
+		}
+
+		offer.setSoldout();
+		offer.setBuyer(activeUser);
+		activeUser.setMoney(activeUser.getMoney() - offer.getPrice());
+		activeUser.getBought().add(offer);
+
+		offersRepository.save(offer);
+		usersRepository.save(activeUser);
+		
+		return true;
+
 	}
 }

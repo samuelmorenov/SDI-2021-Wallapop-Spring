@@ -18,13 +18,14 @@
 		</form>
 
 		<p th:text="#{offer.all.intro}"></p>
-		<div class="table-responsive">
+		<div class="table-responsive" th:fragment="tableOffers">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th th:text="#{offer.title}"></th>
 						<th th:text="#{offer.description}"></th>
 						<th th:text="#{offer.price}"></th>
+						<th class="col-md-1"></th>
 
 					</tr>
 				</thead>
@@ -33,6 +34,47 @@
 						<td th:text="${offer.title}"></td>
 						<td th:text="${offer.description}"></td>
 						<td th:text="${offer.price}"></td>
+						
+						<td>
+							<button
+							type="button"
+							th:id="${'buyButton' + offer.id}" 
+							class="btn btn-default"
+							th:text="#{offer.all.button.comprar}">
+							</button> 
+							
+							
+							<div th:if='${#bools.isTrue(#lists.contains(offersPurchased, offer))}'>
+								<script th:inline="javascript">
+								/*<![CDATA[*/
+									$("#buyButton[[${offer.id}]]").attr('disabled', true);
+									$("#buyButton[[${offer.id}]]").text( "Comprado" );
+									$("#buyButton[[${offer.id}]]").id = "buyButtonOff[[${offer.id}]]";
+								/*]]>*/
+								</script>
+							</div>
+							
+							<div th:if='${#bools.isTrue(#lists.contains(offersOwn, offer))}'>
+								<script th:inline="javascript">
+								/*<![CDATA[*/
+									$("#buyButton[[${offer.id}]]").attr('disabled', true);
+									$("#buyButton[[${offer.id}]]").text( "Propio" );
+									$("#buyButton[[${offer.id}]]").id = "buyButtonOff[[${offer.id}]]";
+								/*]]>*/
+								</script>
+							</div>
+
+							<script th:inline="javascript"> 
+							/*<![CDATA[*/
+							$( "#buyButton[[${offer.id}]]" ).click(
+								function() {
+									var offerId = [[${offer.id}]];
+									$.post("/offer/buy", {"OfferId" : offerId});
+								}
+							); 
+							/*]]>*/
+							</script>
+						</td>
 
 					</tr>
 				</tbody>
