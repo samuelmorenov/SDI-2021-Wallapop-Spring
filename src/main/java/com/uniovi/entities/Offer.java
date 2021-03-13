@@ -27,16 +27,28 @@ public class Offer {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date; // fecha de alta de la oferta(Esta fecha puede ser la del sistema)
 
-	private String price; // cantidad solicitada en euros
+	private Double price; // cantidad solicitada en euros
 
 	@Enumerated(EnumType.STRING)
-	private OfferStatus status = OfferStatus.CREATED; // estado actual de la oferta
+	private OfferStatus status; // estado actual de la oferta
 
 	@ManyToOne
 	private User creator; // usuario que ha creado la oferta
 
 	@ManyToOne
 	private User buyer; // usuario que ha comprado la oferta
+
+	public Offer() {
+		this.status = OfferStatus.CREATED;
+	}
+
+	public Offer(String title, String description, Double price) {
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.date = new Date();
+		this.status = OfferStatus.CREATED;
+	}
 
 	public String getTitle() {
 		return title;
@@ -62,11 +74,11 @@ public class Offer {
 		this.date = date;
 	}
 
-	public String getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
@@ -74,8 +86,8 @@ public class Offer {
 		return status;
 	}
 
-	public void setStatus(OfferStatus status) {
-		this.status = status;
+	public void setSoldout() {
+		this.status = OfferStatus.SOLDOUT;
 	}
 
 	public User getCreator() {

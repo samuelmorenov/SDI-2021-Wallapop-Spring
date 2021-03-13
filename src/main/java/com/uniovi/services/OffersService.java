@@ -1,6 +1,7 @@
 package com.uniovi.services;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Offer;
+import com.uniovi.entities.User;
 import com.uniovi.repositories.OffersRepository;
 
 @Service
@@ -35,5 +37,13 @@ public class OffersService {
 
 	public Page<Offer> getAllOffers(Pageable pageable) {
 		return offersRepository.findAll(pageable);
+	}
+
+	public List<Offer> getOwnOffers(User activeUser) {
+		return offersRepository.findOwnOffers(activeUser);
+	}
+
+	public List<Offer> getPurchasedOffers(User activeUser) {
+		return offersRepository.findPurchasedOffers(activeUser);
 	}
 }

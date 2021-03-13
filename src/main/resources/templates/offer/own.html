@@ -2,9 +2,15 @@
 <html lang="en">
 <head th:replace="fragments/head" />
 <body>
+	<!-- Barra de Navegacion superior -->
 	<nav th:replace="fragments/nav" />
-	<div class="container" style="text-align: center">
-		<p>WIP: Own</p>
+	<div class="container">
+		<h2 th:text="#{offer.own.title}"></h2>
+
+		<p th:text="#{offer.own.intro}"></p>
+		
+		<div th:replace="offer/fragments/table" th:fragment="tableOffers"/>
+
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>

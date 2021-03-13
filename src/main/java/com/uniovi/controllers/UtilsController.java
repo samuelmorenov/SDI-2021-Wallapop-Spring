@@ -19,11 +19,12 @@ public class UtilsController {
 	@Autowired
 	protected UsersService usersService;
 
-	protected void setActiveUser(Model model) {
+	protected User setActiveUser(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
 		httpSession.setAttribute("currentlyUser", activeUser);
 		model.addAttribute("currentlyUser", activeUser);
+		return activeUser;
 	}
 }

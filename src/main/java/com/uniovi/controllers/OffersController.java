@@ -32,7 +32,9 @@ public class OffersController extends UtilsController {
 
 	@RequestMapping(value = "/offer/post")
 	public String offer_post_GET(Model model) {
+		// Set active user
 		this.setActiveUser(model);
+		
 		model.addAttribute("offer", new Offer());
 		return "offer/post";
 	}
@@ -52,7 +54,8 @@ public class OffersController extends UtilsController {
 	@RequestMapping(value = "/offer/all")
 	public String offer_all_GET(Model model, Pageable pageable, Principal principal,
 			@RequestParam(value = "", required = false) String searchText) {
-
+		
+		// Set active user
 		this.setActiveUser(model);
 
 		// Paginacion y busqueda
@@ -73,15 +76,19 @@ public class OffersController extends UtilsController {
 
 	@RequestMapping(value = "/offer/own")
 	public String offer_own_GET(Model model) {
-		this.setActiveUser(model);
-		// TODO: Añadir lista de ofertas propias
+		// Set active user
+		User activeUser = this.setActiveUser(model);
+		
+		model.addAttribute("offersList", offersService.getOwnOffers(activeUser));
 		return "offer/own";
 	}
 
 	@RequestMapping(value = "/offer/purchased")
 	public String offer_purchased_GET(Model model) {
-		this.setActiveUser(model);
-		// TODO: Añadir lista de ofertas compradas
+		// Set active user
+		User activeUser = this.setActiveUser(model);
+		
+		model.addAttribute("offersList", offersService.getPurchasedOffers(activeUser));
 		return "offer/purchased";
 	}
 
