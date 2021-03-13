@@ -17,19 +17,20 @@ public class OfferValidator implements Validator{
 
 	@Override
 	public void validate(Object target, Errors errors) {
+		//TODO Preguntar: Por que no muestra los errores
 		Offer offer = (Offer) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "Error.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "Error.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "Error.empty");
 
 		if(offer.getDescription().length() < 20) {
-			errors.rejectValue("title", "Error.addMark.description");
+			errors.rejectValue("title", "Error.offer.title");
 		}
 		if(offer.getDescription().length() < 5) {
-			errors.rejectValue("description", "Error.addMark.description");
+			errors.rejectValue("description", "Error.offer.description");
 		}		
 		if (offer.getPrice() == null || offer.getPrice()<= 1) {
-			errors.rejectValue("price", "Error.addMark.score");
+			errors.rejectValue("price", "Error.offer.price");
 		}
 	}
 }
