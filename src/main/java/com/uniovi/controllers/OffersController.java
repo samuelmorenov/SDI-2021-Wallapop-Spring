@@ -29,12 +29,11 @@ public class OffersController extends UtilsController {
 
 	@Autowired
 	private OfferValidator offerValidator;
-
-	@RequestMapping(value = "/offer/post")
-	public String offer_post_GET(Model model) {
+	
+	@RequestMapping(value = "/offer/post", method = RequestMethod.GET)
+	public String offer_post_GET(Model model) {		
 		// Set active user
 		this.setActiveUser(model);
-		
 		model.addAttribute("offer", new Offer());
 		return "offer/post";
 	}
@@ -42,7 +41,10 @@ public class OffersController extends UtilsController {
 	@RequestMapping(value = "/offer/post", method = RequestMethod.POST)
 	public String offer_post_POST(@Validated Offer offer, BindingResult result, Model model) {
 		offerValidator.validate(offer, result);
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {		
+			// Set active user
+			this.setActiveUser(model);
+			model.addAttribute("offer", new Offer());
 			return "offer/post";
 		}
 		offer.setCreator((User) httpSession.getAttribute("currentlyUser"));
