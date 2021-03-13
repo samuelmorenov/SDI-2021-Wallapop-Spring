@@ -46,4 +46,12 @@ public class OffersService {
 	public List<Offer> getPurchasedOffers(User activeUser) {
 		return offersRepository.findPurchasedOffers(activeUser);
 	}
+
+	public Offer getOfferById(Long offerId) {
+		return offersRepository.findById(offerId).get();
+	}
+
+	public void delete(Offer offer) {
+		offersRepository.delete(offer);
+	}
 }

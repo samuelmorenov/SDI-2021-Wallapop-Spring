@@ -9,7 +9,25 @@
 
 		<p th:text="#{offer.purchased.intro}"></p>
 
-		<div th:replace="offer/fragments/table" th:fragment="tableOffers" />
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th th:text="#{offer.title}"></th>
+						<th th:text="#{offer.description}"></th>
+						<th th:text="#{offer.price}"></th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offer : ${offersList}">
+						<td th:text="${offer.title}"></td>
+						<td th:text="${offer.description}"></td>
+						<td th:text="${offer.price}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
 	</div>
 	<footer th:replace="fragments/footer" />

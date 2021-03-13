@@ -29,9 +29,9 @@ public class OffersController extends UtilsController {
 
 	@Autowired
 	private OfferValidator offerValidator;
-	
+
 	@RequestMapping(value = "/offer/post", method = RequestMethod.GET)
-	public String offer_post_GET(Model model) {		
+	public String offer_post_GET(Model model) {
 		// Set active user
 		this.setActiveUser(model);
 		model.addAttribute("offer", new Offer());
@@ -41,7 +41,7 @@ public class OffersController extends UtilsController {
 	@RequestMapping(value = "/offer/post", method = RequestMethod.POST)
 	public String offer_post_POST(@Validated Offer offer, BindingResult result, Model model) {
 		offerValidator.validate(offer, result);
-		if (result.hasErrors()) {		
+		if (result.hasErrors()) {
 			// Set active user
 			this.setActiveUser(model);
 			model.addAttribute("offer", new Offer());
@@ -56,7 +56,7 @@ public class OffersController extends UtilsController {
 	@RequestMapping(value = "/offer/all")
 	public String offer_all_GET(Model model, Pageable pageable, Principal principal,
 			@RequestParam(value = "", required = false) String searchText) {
-		
+
 		// Set active user
 		this.setActiveUser(model);
 
@@ -80,7 +80,7 @@ public class OffersController extends UtilsController {
 	public String offer_own_GET(Model model) {
 		// Set active user
 		User activeUser = this.setActiveUser(model);
-		
+
 		model.addAttribute("offersList", offersService.getOwnOffers(activeUser));
 		return "offer/own";
 	}
@@ -89,9 +89,18 @@ public class OffersController extends UtilsController {
 	public String offer_purchased_GET(Model model) {
 		// Set active user
 		User activeUser = this.setActiveUser(model);
-		
+
 		model.addAttribute("offersList", offersService.getPurchasedOffers(activeUser));
 		return "offer/purchased";
+	}
+
+	@RequestMapping(value = "/offer/delete", method = RequestMethod.POST)
+	public String offer_delete_POST(@RequestParam Long OfferId, Model model, Principal principal) {
+
+		Offer offer = offersService.getOfferById(OfferId);
+		offersService.delete(offer);
+
+		return "offer/own";
 	}
 
 }

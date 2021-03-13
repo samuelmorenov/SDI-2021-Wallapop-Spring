@@ -106,4 +106,7 @@ public class Offer {
 		this.buyer = buyer;
 	}
 
+	public long getId() {
+		return id;
+	}
 }

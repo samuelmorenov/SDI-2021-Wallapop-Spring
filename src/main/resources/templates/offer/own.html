@@ -9,7 +9,45 @@
 
 		<p th:text="#{offer.own.intro}"></p>
 
-		<div th:replace="offer/fragments/table" th:fragment="tableOffers" />
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th th:text="#{offer.title}"></th>
+						<th th:text="#{offer.description}"></th>
+						<th th:text="#{offer.price}"></th>
+						<th class="col-md-1"></th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offer : ${offersList}"
+						th:id="${'offer' + offer.id}">
+						<td th:text="${offer.title}"></td>
+						<td th:text="${offer.description}"></td>
+						<td th:text="${offer.price}"></td>
+						<td>
+							<button
+							type="button"
+							th:id="${'deleteButton' + offer.id}"
+							th:onclick="javascript:borrar([[${offer.id}]]);"
+							class="btn btn-default"
+							th:text="#{offer.own.button.borrar}">
+							</button>
+						</td>
+					</tr>
+					
+					<script th:inline="javascript">
+					/*<![CDATA[*/
+						function borrar(oferta) {
+							$.post("/offer/delete",{"OfferId" : oferta});
+							document.getElementById("offer"+oferta).remove();
+						}
+					/*]]>*/
+					</script>					
+				</tbody>
+			</table>
+		</div>
 
 	</div>
 	<footer th:replace="fragments/footer" />
