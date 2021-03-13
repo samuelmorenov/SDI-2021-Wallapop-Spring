@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,7 +77,6 @@ public class OffersController extends UtilsController {
 		model.addAttribute("offersList", offers.getContent());
 		model.addAttribute("page", offers);
 
-		// TODO: Mirar como internacionalizar los botones
 		List<Offer> offersPurchased = offersService.getPurchasedOffers(activeUser);
 		model.addAttribute("offersPurchased", offersPurchased);
 
@@ -115,23 +115,21 @@ public class OffersController extends UtilsController {
 		return "offer/own";
 	}
 
-	@RequestMapping(value = "/offer/buy", method = RequestMethod.POST)
-	public String offer_buy_POST(@RequestParam Long OfferId, Model model, Principal principal) {
+	@RequestMapping(value = "/offer/buy/{id}", method = RequestMethod.POST)
+	public String offer_buy_POST(@PathVariable Long id, Model model, Principal principal) {
 		// Set active user
 		User activeUser = this.setActiveUser(model);
 
-		Offer offer = offersService.getOfferById(OfferId);
+		Offer offer = offersService.getOfferById(id);
 
-		boolean correcto = offersService.buy(activeUser, offer);
+		boolean errores = !offersService.buy(activeUser, offer);
 
-		// Set active user
-		this.setActiveUser(model);
-		model.addAttribute("offer", new Offer());
-
-		if (!correcto) {
-			return "offer/all";
+		if (errores) {
+			// TODO: Mirar como hacer que se guarde la busqueda y la paginacion entre
+			// TODO Preguntar que hacer en caso de error
+			return "redirect:/offer/all";
 		}
-
+		
 		return "redirect:/offer/purchased";
 
 	}

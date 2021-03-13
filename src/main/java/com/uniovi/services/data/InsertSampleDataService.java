@@ -39,11 +39,17 @@ public class InsertSampleDataService {
 		offer3.setCreator(usersService.getUserByEmail((UserList.usuarios(0).email)));
 		Offer offer4 = new Offer("Oferta 4", "Descipcion de la oferta 4", 14.0);
 		offer4.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		Offer offer5 = new Offer("Oferta 5", "Descipcion de la oferta 5", 86.0);
+		offer5.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		Offer offer6 = new Offer("Oferta 6", "Descipcion de la oferta 6", 100.0);
+		offer6.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
 
 		offersService.addOffer(offer1);
 		offersService.addOffer(offer2);
 		offersService.addOffer(offer3);
 		offersService.addOffer(offer4);
+		offersService.addOffer(offer5);
+		offersService.addOffer(offer6);
 	}
 
 	private void initUsers() {

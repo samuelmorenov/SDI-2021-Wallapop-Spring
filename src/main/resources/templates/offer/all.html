@@ -36,44 +36,38 @@
 						<td th:text="${offer.price}"></td>
 						
 						<td>
-							<button
-							type="button"
-							th:id="${'buyButton' + offer.id}" 
-							class="btn btn-default"
-							th:text="#{offer.all.button.comprar}">
-							</button> 
-							
-							
 							<div th:if='${#bools.isTrue(#lists.contains(offersPurchased, offer))}'>
-								<script th:inline="javascript">
-								/*<![CDATA[*/
-									$("#buyButton[[${offer.id}]]").attr('disabled', true);
-									$("#buyButton[[${offer.id}]]").text( "Comprado" );
-									$("#buyButton[[${offer.id}]]").id = "buyButtonOff[[${offer.id}]]";
-								/*]]>*/
-								</script>
+								<button
+									type="button"
+									disabled=true
+									th:id="${'buyButton' + offer.id}" 
+									class="btn btn-default"
+									th:text="#{offer.all.button.comprado}">
+								</button> 
 							</div>
 							
 							<div th:if='${#bools.isTrue(#lists.contains(offersOwn, offer))}'>
-								<script th:inline="javascript">
-								/*<![CDATA[*/
-									$("#buyButton[[${offer.id}]]").attr('disabled', true);
-									$("#buyButton[[${offer.id}]]").text( "Propio" );
-									$("#buyButton[[${offer.id}]]").id = "buyButtonOff[[${offer.id}]]";
-								/*]]>*/
-								</script>
+								<button
+									type="button"
+									disabled=true
+									th:id="${'buyButton' + offer.id}" 
+									class="btn btn-default"
+									th:text="#{offer.all.button.propio}">
+								</button> 
 							</div>
-
-							<script th:inline="javascript"> 
-							/*<![CDATA[*/
-							$( "#buyButton[[${offer.id}]]" ).click(
-								function() {
-									var offerId = [[${offer.id}]];
-									$.post("/offer/buy", {"OfferId" : offerId});
-								}
-							); 
-							/*]]>*/
-							</script>
+							
+							<div th:if='${#bools.isFalse(#lists.contains(offersOwn, offer))}'>
+								<div th:if='${#bools.isFalse(#lists.contains(offersPurchased, offer))}'>
+									<form method="post" th:action="${'/offer/buy/' + offer.id}">
+										<button
+											type="submit"
+											th:id="${'buyButton' + offer.id}" 
+											class="btn btn-default"
+											th:text="#{offer.all.button.comprar}">
+										</button> 
+									</form>
+								</div>
+							</div>
 						</td>
 
 					</tr>
