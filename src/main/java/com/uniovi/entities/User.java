@@ -39,10 +39,11 @@ public class User {
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
+		this.money = 100;
 	}
 
 	public User() {
-		this.money = 100L;
+		this.money = 100;
 	}
 
 	public long getId() {

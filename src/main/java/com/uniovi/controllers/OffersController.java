@@ -32,7 +32,7 @@ public class OffersController extends UtilsController {
 
 	@RequestMapping(value = "/offer/post")
 	public String offer_post_GET(Model model) {
-		this.setActiveUser();
+		this.setActiveUser(model);
 		model.addAttribute("offer", new Offer());
 		return "offer/post";
 	}

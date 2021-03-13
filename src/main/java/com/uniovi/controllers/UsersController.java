@@ -18,14 +18,14 @@ public class UsersController extends UtilsController {
 
 	@RequestMapping("/user/list")
 	public String user_list(Model model, Principal principal) {
-		this.setActiveUser();
+		this.setActiveUser(model);
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/list";
 	}
 
 	@RequestMapping("/user/profile")
-	public String index() {
-		this.setActiveUser();
+	public String index(Model model) {
+		this.setActiveUser(model);
 		return "user/profile";
 	}
 }
