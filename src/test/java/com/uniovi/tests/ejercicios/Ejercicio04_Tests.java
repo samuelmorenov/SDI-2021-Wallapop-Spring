@@ -6,9 +6,9 @@ import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
-import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio04_Tests extends BaseTests {

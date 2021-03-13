@@ -3,6 +3,7 @@ package com.uniovi.tests.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@Deprecated
 public class PO_Search extends PO_NavView {
 	@Deprecated
 	static public void search(String text) {

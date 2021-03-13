@@ -1,5 +1,6 @@
 package com.uniovi.tests.pageobjects;
 
+@Deprecated
 public class PO_Language {
 
 	private static String ES = "btnSpanish";

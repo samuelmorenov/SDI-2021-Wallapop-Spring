@@ -4,7 +4,13 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import static org.junit.Assert.fail;
+import com.uniovi.services.data.UserList;
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_PrivateView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
+import com.uniovi.tests.pageobjects.formularios.PO_PostView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio06_Tests extends BaseTests {
@@ -16,7 +22,12 @@ public class Ejercicio06_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_16() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_PrivateView.accederPagina("offer-menu", "/offer/post");
+		PO_PostView.fillForm("Oferta Test 1", "Oferta Test 1 Descripcion", "10,01");
+		PO_PrivateView.accederPagina("offer-menu", "/offer/own");
+		PO_View.checkElement("text", "Oferta Test 1");
 	}
 
 	/**
@@ -26,7 +37,10 @@ public class Ejercicio06_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_17() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_PrivateView.accederPagina("offer-menu", "/offer/post");
+		PO_PostView.fillForm("", "Oferta Test 1 Descripcion", "10,01");		
+		PO_View.checkKey("Error.empty", PO_Properties.getSPANISH());
 	}
-
 }

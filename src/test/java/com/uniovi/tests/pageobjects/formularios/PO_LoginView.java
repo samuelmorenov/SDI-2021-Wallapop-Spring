@@ -1,7 +1,9 @@
-package com.uniovi.tests.pageobjects;
+package com.uniovi.tests.pageobjects.formularios;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.uniovi.tests.pageobjects.PO_NavView;
 
 public class PO_LoginView extends PO_NavView {
 	static public void fillForm(String emailp, String passwordp) {

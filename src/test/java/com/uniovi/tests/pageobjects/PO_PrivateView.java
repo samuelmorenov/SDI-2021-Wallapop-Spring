@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_PrivateView extends PO_NavView {
