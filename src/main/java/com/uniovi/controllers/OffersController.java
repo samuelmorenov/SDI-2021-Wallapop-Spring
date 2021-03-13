@@ -50,19 +50,37 @@ public class OffersController extends UtilsController {
 	}
 
 	@RequestMapping(value = "/offer/all")
-	public String offer_all_GET(Model model) {
-		//TODO: Añadir lista de todas las ofertas
+	public String offer_all_GET(Model model, Pageable pageable, Principal principal,
+			@RequestParam(value = "", required = false) String searchText) {
+
+		this.setActiveUser(model);
+
+		// Paginacion y busqueda
+		Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
+		if (searchText != null && !searchText.isEmpty()) {
+			offers = offersService.getAllOffersByTitle(pageable, searchText);
+		} else {
+			offers = offersService.getAllOffers(pageable);
+		}
+
+		// Añadir elementos al modelo
+
+		model.addAttribute("offersList", offers.getContent());
+		model.addAttribute("page", offers);
+
 		return "offer/all";
 	}
 
 	@RequestMapping(value = "/offer/own")
 	public String offer_own_GET(Model model) {
+		this.setActiveUser(model);
 		// TODO: Añadir lista de ofertas propias
 		return "offer/own";
 	}
 
 	@RequestMapping(value = "/offer/purchased")
 	public String offer_purchased_GET(Model model) {
+		this.setActiveUser(model);
 		// TODO: Añadir lista de ofertas compradas
 		return "offer/purchased";
 	}
