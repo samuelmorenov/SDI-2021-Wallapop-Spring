@@ -1,16 +1,20 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
 import java.util.Date;
-
-import javax.servlet.http.HttpSession;
+import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Offer;
 import com.uniovi.entities.User;
@@ -18,20 +22,17 @@ import com.uniovi.services.OffersService;
 import com.uniovi.validators.OfferValidator;
 
 @Controller
-public class OffersController {
+public class OffersController extends UtilsController {
 
-	@Autowired
-	private HttpSession httpSession;
-	
 	@Autowired
 	private OffersService offersService;
 
 	@Autowired
 	private OfferValidator offerValidator;
-	
 
 	@RequestMapping(value = "/offer/post")
 	public String offer_post_GET(Model model) {
+		this.setActiveUser();
 		model.addAttribute("offer", new Offer());
 		return "offer/post";
 	}
@@ -47,23 +48,23 @@ public class OffersController {
 		offersService.addOffer(offer);
 		return "redirect:/offer/own";
 	}
-	
+
 	@RequestMapping(value = "/offer/all")
 	public String offer_all_GET(Model model) {
 		//TODO: Añadir lista de todas las ofertas
 		return "offer/all";
 	}
-	
+
 	@RequestMapping(value = "/offer/own")
 	public String offer_own_GET(Model model) {
-		//TODO: Añadir lista de ofertas propias
+		// TODO: Añadir lista de ofertas propias
 		return "offer/own";
 	}
-	
+
 	@RequestMapping(value = "/offer/purchased")
 	public String offer_purchased_GET(Model model) {
-		//TODO: Añadir lista de ofertas compradas
+		// TODO: Añadir lista de ofertas compradas
 		return "offer/purchased";
 	}
-	
+
 }
