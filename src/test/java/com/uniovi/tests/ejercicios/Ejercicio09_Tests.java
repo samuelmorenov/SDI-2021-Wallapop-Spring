@@ -1,10 +1,17 @@
 package com.uniovi.tests.ejercicios;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.WebElement;
 
-import static org.junit.Assert.fail;
+import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.PO_Search;
+import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio09_Tests extends BaseTests {
@@ -15,7 +22,16 @@ public class Ejercicio09_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_21() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+		PO_NavView.accederPagina("offer-menu", "/offer/all");
+		int total = PO_NavView.checkElement("class", "fila").size();
+
+		PO_NavView.accederPagina("offer-menu", "/offer/all");
+		PO_Search.search("");
+
+		int parcial = PO_NavView.checkElement("class", "fila").size();
+
+		assertTrue(total == parcial);
 	}
 
 	/**
@@ -24,7 +40,12 @@ public class Ejercicio09_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_22() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+
+		PO_NavView.accederPagina("offer-menu", "/offer/all");
+		PO_Search.search("NombreInexistente");
+
+		PO_NavView.checkNoElement("class", "fila");
 	}
 
 }
