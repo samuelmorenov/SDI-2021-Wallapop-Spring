@@ -32,6 +32,7 @@ public class UsersService {
 	@Autowired
 	private HttpSession httpSession;
 
+	@Deprecated
 	public Page<User> getUsers(Pageable pageable) {
 
 		User activeUser = (User) httpSession.getAttribute("currentlyUser");
@@ -47,6 +48,7 @@ public class UsersService {
 		return users;
 	}
 
+	@Deprecated
 	public User getUser(Long id) {
 		return usersRepository.findById(id).get();
 	}
@@ -60,10 +62,12 @@ public class UsersService {
 		return usersRepository.findByEmail(email);
 	}
 
+	@Deprecated
 	public void deleteUser(Long id) {
 		usersRepository.deleteById(id);
 	}
 
+	@Deprecated
 	public Page<User> searchByNameAndLastname(Pageable pageable, String searchText) {
 		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		searchText = "%" + searchText + "%";
@@ -74,6 +78,7 @@ public class UsersService {
 		return users;
 	}
 
+	@Deprecated
 	public void update(User user) {
 		usersRepository.save(user);
 	}
