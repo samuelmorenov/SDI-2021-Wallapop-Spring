@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,6 +27,8 @@ import com.uniovi.validators.OfferValidator;
 
 @Controller
 public class OffersController extends UtilsController {
+
+	final static Logger logger = LoggerFactory.getLogger(OffersController.class);
 
 	@Autowired
 	private OffersService offersService;
@@ -129,7 +133,7 @@ public class OffersController extends UtilsController {
 			// TODO: Mostrar mensaje de error
 			return "redirect:/offer/all";
 		}
-		
+
 		return "redirect:/offer/purchased";
 
 	}
