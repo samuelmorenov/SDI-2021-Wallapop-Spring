@@ -42,6 +42,7 @@ public class UsersService {
 		return users;
 	}
 
+	@Deprecated
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<User>();
 		usersRepository.findAll().forEach(users::add);
@@ -62,7 +63,6 @@ public class UsersService {
 		return usersRepository.findByEmail(email);
 	}
 
-	@Deprecated
 	public void deleteUser(Long id) {
 		usersRepository.deleteById(id);
 	}
@@ -81,6 +81,10 @@ public class UsersService {
 	@Deprecated
 	public void update(User user) {
 		usersRepository.save(user);
+	}
+
+	public List<User> getUsersButOne(User activeUser) {
+		return usersRepository.findAllButOne(activeUser);
 	}
 
 }

@@ -27,7 +27,7 @@ public class UsersController extends UtilsController {
 		// Set active user
 		User activeUser = this.setActiveUser(model);
 		
-		model.addAttribute("usersList", usersService.getUsers());
+		model.addAttribute("usersList", usersService.getUsersButOne(activeUser));
 		return "user/list";
 	}
 

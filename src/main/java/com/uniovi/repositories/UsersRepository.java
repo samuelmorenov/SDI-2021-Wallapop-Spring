@@ -1,5 +1,7 @@
 package com.uniovi.repositories;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +20,8 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 	@Deprecated
 	@Query("SELECT u FROM User u where u.role <> ?2 and u.email <> ?1")
 	Page<User> findOthersUsersWithNoThisRole(Pageable pageable, String email, String role);
+
+	@Query("SELECT u FROM User u where u <> ?1")
+	List<User> findAllButOne(User activeUser);
 
 }
