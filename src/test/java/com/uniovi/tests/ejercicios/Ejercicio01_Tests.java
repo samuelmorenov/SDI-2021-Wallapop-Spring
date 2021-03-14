@@ -14,6 +14,7 @@ import com.uniovi.tests.pageobjects.formularios.PO_RegisterView;
 public class Ejercicio01_Tests extends BaseTests {
 
 	private static String randomEmail() {
+		//TODO: Mejor quito esto xD
 		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
 	}
 
@@ -21,7 +22,7 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_01() {
 		PO_NavView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
+		PO_RegisterView.fillForm(UserList.usuariosTest(0).email, UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
 		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
 	}

@@ -24,7 +24,7 @@
 					
 					<tbody>						
 						<tr th:each="user : ${usersList}">
-							<td><input type="checkbox" name="checkbox" th:value="${user.email}"></td>
+							<td><input class="checkbox" type="checkbox" name="checkbox" th:value="${user.email}"></td>
 							<td th:text="${user.email}"></td>
 							<td th:text="${user.name}"></td>
 							<td th:text="${user.lastName}"></td>

@@ -70,4 +70,11 @@ public class PO_NavView {
 		// Ahora lo clickamos
 		elementos.get(0).click();
 	}
+	
+	public static void clickButton(String textoBoton) {
+		List<WebElement> elementos = PO_View.checkText(textoBoton);
+		assertTrue(elementos.size() == 1);
+		elementos.get(0).click();
+
+	}
 }
