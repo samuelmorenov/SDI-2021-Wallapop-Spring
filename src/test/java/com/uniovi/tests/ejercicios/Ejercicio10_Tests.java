@@ -1,10 +1,15 @@
 package com.uniovi.tests.ejercicios;
 
+import java.util.List;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.WebElement;
 
-import static org.junit.Assert.fail;
+import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.PO_Search;
+import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio10_Tests extends BaseTests {
@@ -16,7 +21,15 @@ public class Ejercicio10_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_23() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+		PO_NavView.accederPagina("offer-menu", "/offer/all");
+		
+		
+		PO_Search.search("Oferta 5");
+		List<WebElement> botones = PO_NavView.checkElement("class", "comprar");
+		botones.get(0).click();
+		PO_NavView.checkText("14.0");
+		
 	}
 
 	/**
@@ -26,7 +39,14 @@ public class Ejercicio10_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_24() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+		PO_NavView.accederPagina("offer-menu", "/offer/all");
+		PO_Search.search("Oferta 4");
+
+		List<WebElement> botones = PO_NavView.checkElement("class", "comprar");
+		botones.get(0).click();
+		
+		PO_NavView.checkText("0.0");
 	}
 
 	/**
@@ -36,7 +56,14 @@ public class Ejercicio10_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_25() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+		PO_NavView.accederPagina("offer-menu", "/offer/all");
+		PO_Search.search("Oferta 6");
+
+		List<WebElement> botones = PO_NavView.checkElement("class", "comprar");
+		botones.get(0).click();
+		
+		PO_NavView.checkText("Saldo no suficiente");
 	}
 
 }

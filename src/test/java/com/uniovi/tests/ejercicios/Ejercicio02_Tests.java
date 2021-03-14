@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
-import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
@@ -33,7 +33,7 @@ public class Ejercicio02_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_07() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_NavView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm("", "");
 		PO_View.checkKey("Error.login", PO_Properties.getSPANISH());
 	}
@@ -44,7 +44,7 @@ public class Ejercicio02_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_08() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_NavView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.usuarios(0).email, "incorrecta");
 		PO_View.checkKey("Error.login", PO_Properties.getSPANISH());
 	}
@@ -55,7 +55,7 @@ public class Ejercicio02_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_09() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_NavView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm("email@incorrecto.com", UserList.usuarios(0).password);
 		PO_View.checkKey("Error.login", PO_Properties.getSPANISH());
 	}

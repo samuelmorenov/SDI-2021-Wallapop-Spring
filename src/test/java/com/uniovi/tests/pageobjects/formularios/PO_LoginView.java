@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.uniovi.services.data.UserList;
-import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_NavView;
 
 public class PO_LoginView extends PO_NavView {
@@ -26,12 +25,12 @@ public class PO_LoginView extends PO_NavView {
 	}
 
 	static public void loginUser0() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_NavView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
 	}
 
 	public static void loginAdmin() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_NavView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
 	}
 }

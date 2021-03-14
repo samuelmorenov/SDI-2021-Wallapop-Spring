@@ -7,10 +7,9 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
-import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
-import com.uniovi.tests.pageobjects.formularios.PO_PrivateView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Adicionales extends BaseTests {
@@ -45,9 +44,9 @@ public class Adicionales extends BaseTests {
 	 */
 	@Test
 	public void Adicional_04() {
-		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_NavView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.admin.email, UserList.admin.password);
-		PO_PrivateView.accederPagina("users-menu", "/user/list");
+		PO_NavView.accederPagina("users-menu", "/user/list");
 		PO_View.checkNoText(UserList.admin.email);
 	}
 
