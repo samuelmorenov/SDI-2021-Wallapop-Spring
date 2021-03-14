@@ -17,9 +17,9 @@ import com.uniovi.services.UsersService;
 import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
-public class HomeController {
+public class HomeController extends UtilsController{
 
-	final static Logger logger = LoggerFactory.getLogger(HomeController.class);
+	final static Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
 	private SecurityService securityService;
@@ -32,29 +32,39 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String index() {
+		LOG.info("Redireccionado de index a /user/profile");
 		return "redirect:/user/profile";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup_GET(Model model) {
+		LOG.info("Accediendo a /signup por el metodo GET");
 		model.addAttribute("user", new User());
+		LOG.info("Añadido nuevo usuario al modelo");
 		return "signup";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup_POST(@Validated User user, BindingResult result, Model model) {
+		LOG.info("Accediendo a /signup por el metodo POST");
 		signUpFormValidator.validate(user, result);
 		if (result.hasErrors()) {
+			LOG.error("El usuario proporcionado en el formulario no es valido");
 			return "signup";
 		}
 		user.setRole(RolesService.getRoles()[0]);
 		usersService.addUser(user);
+		LOG.info("Se ha añadido el usuario al sistema con email: "+user.getEmail());
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+		LOG.info("autoLogin para el nuevo usuario con email: "+user.getEmail());
+		LOG.info("redireccion a /user/profile");
 		return "redirect:/user/profile";
 	}
 
 	@RequestMapping(value = "/login")
 	public String login(Model model) {
+		LOG.info("Accediendo a /login por el metodo GET");
+		this.setActiveUser(model);
 		return "login";
 	}
 }

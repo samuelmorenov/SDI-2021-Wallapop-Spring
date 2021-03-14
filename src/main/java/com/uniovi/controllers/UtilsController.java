@@ -16,7 +16,7 @@ import com.uniovi.services.UsersService;
 @Controller
 public class UtilsController {
 
-	final static Logger logger = LoggerFactory.getLogger(UtilsController.class);
+	final static Logger LOG = LoggerFactory.getLogger(UtilsController.class);
 
 	@Autowired
 	protected HttpSession httpSession;
