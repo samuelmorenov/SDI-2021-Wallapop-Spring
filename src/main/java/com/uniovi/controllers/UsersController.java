@@ -20,6 +20,8 @@ public class UsersController extends UtilsController {
 	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
 	public String user_delete_id(Model model, @RequestParam(defaultValue = "false") String[] checkbox) {
 		LOG.info("Accediendo a /user/delete por el metodo POST");
+		// Set active user
+		this.setActiveUser(model);
 		
 		for (int i = 0; i < checkbox.length; i++) {
 			User user = usersService.getUserByEmail(checkbox[i]);
@@ -50,7 +52,7 @@ public class UsersController extends UtilsController {
 	public String index(Model model) {
 		LOG.info("Accediendo a /user/profile por el metodo GET");
 		// Set active user
-		// TODO this.setActiveUser(model);
+		this.setActiveUser(model);
 
 		// TODO Preguntar: Que hay que mostrar en la vista de perfil de usuario
 

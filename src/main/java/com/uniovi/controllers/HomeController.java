@@ -31,13 +31,17 @@ public class HomeController extends UtilsController{
 	private SignUpFormValidator signUpFormValidator;
 
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
 		LOG.info("Redireccionado de index a /user/profile");
+		// Set active user
+		this.setActiveUser(model);
+		
 		return "redirect:/user/profile";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup_GET(Model model) {
+		
 		LOG.info("Accediendo a /signup por el metodo GET");
 		model.addAttribute("user", new User());
 		LOG.info("Añadido nuevo usuario al modelo");
@@ -46,6 +50,7 @@ public class HomeController extends UtilsController{
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup_POST(@Validated User user, BindingResult result, Model model) {
+		
 		LOG.info("Accediendo a /signup por el metodo POST");
 		signUpFormValidator.validate(user, result);
 		if (result.hasErrors()) {
@@ -58,13 +63,18 @@ public class HomeController extends UtilsController{
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 		LOG.info("autoLogin para el nuevo usuario con email: "+user.getEmail());
 		LOG.info("redireccion a /user/profile");
+		
+		// Set active user
+		this.setActiveUser(model);
 		return "redirect:/user/profile";
 	}
 
 	@RequestMapping(value = "/login")
 	public String login(Model model) {
-		LOG.info("Accediendo a /login por el metodo GET");
-		//this.setActiveUser(model);
+		LOG.info("Accediendo a /login por el metodo GET");		
+		// Set active user
+		this.setActiveUser(model);
+		
 		return "login";
 	}
 }

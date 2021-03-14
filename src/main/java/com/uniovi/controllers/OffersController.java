@@ -40,7 +40,8 @@ public class OffersController extends UtilsController {
 	public String offer_post_GET(Model model) {
 		LOG.info("Accediendo a /offer/post por el metodo GET");
 		// Set active user
-		//TODO this.setActiveUser(model);
+		this.setActiveUser(model);
+		
 		model.addAttribute("offer", new Offer());
 		LOG.info("Añadido nueva oferta al modelo");
 		return "offer/post";
@@ -49,6 +50,9 @@ public class OffersController extends UtilsController {
 	@RequestMapping(value = "/offer/post", method = RequestMethod.POST)
 	public String offer_post_POST(@Validated Offer offer, BindingResult result, Model model) {
 		LOG.info("Accediendo a /offer/post por el metodo GET");
+		// Set active user
+		User activeUser = this.setActiveUser(model);
+		
 		offerValidator.validate(offer, result);
 		if (result.hasErrors()) {
 			LOG.error("La oferta proporcionada en el formulario no es valida");
@@ -57,9 +61,8 @@ public class OffersController extends UtilsController {
 			model.addAttribute("offer", new Offer());
 			return "offer/post";
 		}
-		User creator = (User) httpSession.getAttribute("currentlyUser");
-		offer.setCreator(creator);
-		LOG.info("Se ha establecido el creador de la oferta ("+offer.getTitle()+") a "+creator.getEmail());
+		offer.setCreator(activeUser);
+		LOG.info("Se ha establecido el creador de la oferta ("+offer.getTitle()+") a "+activeUser.getEmail());
 		Date now = new Date();
 		offer.setDate(now);
 		LOG.info("Se ha establecido la fecha de la oferta ("+offer.getTitle()+") a "+now.toString());
@@ -131,7 +134,7 @@ public class OffersController extends UtilsController {
 	public String offer_delete_POST(@RequestParam Long OfferId, Model model, Principal principal) {
 		LOG.info("Accediendo a /offer/delete por el metodo POST");
 		// Set active user
-		// TODO this.setActiveUser(model);
+		this.setActiveUser(model);
 
 		Offer offer = offersService.getOfferById(OfferId);
 		if(offer == null) {
