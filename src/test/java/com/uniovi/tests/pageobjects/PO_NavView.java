@@ -6,19 +6,19 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
-
 public class PO_NavView {
 
 	/**
 	 * CLicka una de las opciones principales (a href) y comprueba que se vaya a la
 	 * vista con el elemento de tipo type con el texto Destino
 	 * 
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param textOption: Texto de la opción principal.
-	 * @param criterio: "id" or "class" or "text" or "@attribute" or "free". Si el
-	 *        valor de criterio es free es una expresion xpath completa.
+	 * @param driver:       apuntando al navegador abierto actualmente.
+	 * @param textOption:   Texto de la opción principal.
+	 * @param criterio:     "id" or "class" or "text" or "@attribute" or "free". Si
+	 *                      el valor de criterio es free es una expresion xpath
+	 *                      completa.
 	 * @param textoDestino: texto correspondiente a la búsqueda de la página
-	 *        destino.
+	 *                      destino.
 	 */
 	public static void clickOption(String textOption, String criterio, String textoDestino) {
 		// CLickamos en la opción de registro y esperamos a que se cargue el enlace de
@@ -33,7 +33,7 @@ public class PO_NavView {
 		// Tiene que haber un sólo elemento.
 		assertTrue(elementos.size() == 1);
 	}
-	
+
 	static public void accederPagina(String lista, String elemento) {
 		List<WebElement> elementos = null;
 		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
@@ -47,9 +47,9 @@ public class PO_NavView {
 	/**
 	 * Selecciona el enlace de idioma correspondiente al texto textLanguage
 	 * 
-	 * @param driver: apuntando al navegador abierto actualmente.
+	 * @param driver:       apuntando al navegador abierto actualmente.
 	 * @param textLanguage: el texto que aparece en el enlace de idioma ("English" o
-	 *        "Spanish")
+	 *                      "Spanish")
 	 */
 	public static void changeIdiom(String textLanguage) {
 		// clickamos la opción Idioma.
@@ -60,6 +60,14 @@ public class PO_NavView {
 		// SeleniumUtils.esperarSegundos(2);
 		// CLickamos la opción Inglés partiendo de la opción Español
 		elementos = PO_View.checkElement("id", textLanguage);
+		elementos.get(0).click();
+	}
+
+	static public void logout() {		
+		List<WebElement> elementos = PO_View.checkElement("@href", "logout");
+		// Tiene que haber un sólo elemento.
+		assertTrue(elementos.size() == 1);
+		// Ahora lo clickamos
 		elementos.get(0).click();
 	}
 }
