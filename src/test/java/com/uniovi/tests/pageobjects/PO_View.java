@@ -5,7 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 
 import com.uniovi.tests.pageobjects.config.PO_Config;
-import com.uniovi.tests.util.SeleniumUtilsV2;
+import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_View extends PO_Config {
 
@@ -20,11 +20,11 @@ public class PO_View extends PO_Config {
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
 	static public List<WebElement> checkKey(String key, int locale) {
-		return SeleniumUtilsV2.EsperaCargaPagina("text", getP().getString(key, locale), getTimeout());
+		return SeleniumUtils.EsperaCargaPagina("text", getP().getString(key, locale), getTimeout());
 	}
 
 	static public void checkNoKey(String key, int locale) {
-		SeleniumUtilsV2.NoEsperaCargaPagina("text", getP().getString(key, locale), getTimeout());
+		SeleniumUtils.NoEsperaCargaPagina("text", getP().getString(key, locale), getTimeout());
 	}
 
 	/**
@@ -37,19 +37,19 @@ public class PO_View extends PO_Config {
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
 	static public List<WebElement> checkElement(String type, String text) {
-		return SeleniumUtilsV2.EsperaCargaPagina(type, text, getTimeout());
+		return SeleniumUtils.EsperaCargaPagina(type, text, getTimeout());
 	}
 
 	static public void checkNoElement(String type, String text) {
-		SeleniumUtilsV2.NoEsperaCargaPagina(type, text, getTimeout());
+		SeleniumUtils.NoEsperaCargaPagina(type, text, getTimeout());
 	}
 
 	static public List<WebElement> checkText(String text) {
-		return SeleniumUtilsV2.EsperaCargaPagina("text", text, getTimeout());
+		return SeleniumUtils.EsperaCargaPagina("text", text, getTimeout());
 	}
 
 	static public void checkNoText(String text) {
-		SeleniumUtilsV2.NoEsperaCargaPagina("text", text, getTimeout());
+		SeleniumUtils.NoEsperaCargaPagina("text", text, getTimeout());
 	}
 
 }

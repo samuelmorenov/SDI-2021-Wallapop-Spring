@@ -126,7 +126,7 @@ public class OffersController extends UtilsController {
 
 		if (errores) {
 			// TODO: Mirar como hacer que se guarde la busqueda y la paginacion entre
-			// TODO: Mostrar mensaje de error PO_View.checkText("Saldo no suficiente");
+			// TODO: Mostrar mensaje de error
 			return "redirect:/offer/all";
 		}
 		

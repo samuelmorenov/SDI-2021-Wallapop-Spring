@@ -19,57 +19,26 @@ public class SeleniumUtils {
 
 	
 	/**
-	 * Aborta si el "texto" no está presente en la página actual
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 */
-	static public void textoPresentePagina(String texto)
-	{
-		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		
-		assertTrue("Texto " + texto + " no localizado!", list.size() > 0);			
-	}
-
-	/**
-	 * Aborta si el "texto" está presente en la página actual
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 */
-	static public void textoNoPresentePagina(String texto)
-	{
-		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		
-		assertTrue("Texto " + texto + " aun presente !", list.size() == 0);			
-	}
-
-	/**
-	 * Aborta si el "texto" está presente en la página actual tras timeout segundos.
-	 * @param driver: apuntando al navegador abierto actualmente.
-	 * @param texto: texto a buscar
-	 * @param timeout: el tiempo máximo que se esperará por la aparición del texto a buscar
-	 */
-	static public void EsperaCargaPaginaNoTexto(String texto, int timeout)
-	{
-		Boolean resultado = 
-				(new WebDriverWait(driver, timeout)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(text(),'" + texto + "')]")));
-
-		assertTrue(resultado);	
-	}
-
-
-	/**
 	 * Espera por la visibilidad de un elemento/s en la vista actualmente cargandose en driver. Para ello se empleará una consulta xpath.
 	 * @param driver: apuntando al navegador abierto actualmente.
 	 * @param xpath: consulta xpath.
 	 * @param timeout: el tiempo máximo que se esperará por la aparición del elemento a buscar con xpath
 	 * @return  Se retornará la lista de elementos resultantes de la búsqueda con xpath.
 	 */
-	static public List<WebElement> EsperaCargaPaginaxpath(String xpath, int timeout)
+	static private List<WebElement> EsperaCargaPaginaxpath(String xpath, int timeout)
 	{
 		WebElement resultado = 
 				(new WebDriverWait(driver, timeout)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 		assertTrue(resultado != null);
 		List<WebElement> elementos = driver.findElements(By.xpath(xpath));
-
+	
 		return elementos;					
+	}
+
+	static private void NoEsperaCargaPaginaxpath(String xpath, int timeout)
+	{
+		List<WebElement> list = driver.findElements(By.xpath(xpath));		
+		assertTrue(list.size() == 0);		
 	}
 
 	/**
@@ -90,10 +59,33 @@ public class SeleniumUtils {
 		else if (criterio.equals("text")) busqueda = "//*[contains(text(),'" + text + "')]";
 		else if (criterio.equals("free")) busqueda = text;
 		else busqueda = "//*[contains("+criterio+",'" + text + "')]";
-
+	
 		return EsperaCargaPaginaxpath(busqueda, timeout);
 	}
-
+	
+	static public void NoEsperaCargaPagina(String criterio, String text, int timeout)
+	{
+		String busqueda;
+		if (criterio.equals("id")) busqueda = "//*[contains(@id,'" + text + "')]";
+		else if (criterio.equals("class")) busqueda = "//*[contains(@class,'" + text + "')]";
+		else if (criterio.equals("text")) busqueda = "//*[contains(text(),'" + text + "')]";
+		else if (criterio.equals("free")) busqueda = text;
+		else busqueda = "//*[contains("+criterio+",'" + text + "')]";
+	
+		NoEsperaCargaPaginaxpath(busqueda, timeout);
+	}
+	
+	/**
+	 * Aborta si el "texto" no está presente en la página actual
+	 * @param driver: apuntando al navegador abierto actualmente.
+	 * @param texto: texto a buscar
+	 */
+	@Deprecated
+	static public void textoPresentePagina(String texto)
+	{
+		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		
+		assertTrue("Texto " + texto + " no localizado!", list.size() > 0);			
+	}
 
 	/**
 	 * PROHIBIDO USARLO PARA VERSIÓN FINAL.
@@ -101,8 +93,8 @@ public class SeleniumUtils {
 	 * @param driver: apuntando al navegador abierto actualmente.
 	 * @param segundos: Segundos de bloqueo de la ejecución en el navegador.
 	 */
+	@Deprecated
 	static public void esperarSegundos(int segundos){
-
 		synchronized(driver){
 			try {
 				driver.wait(segundos * 1000);

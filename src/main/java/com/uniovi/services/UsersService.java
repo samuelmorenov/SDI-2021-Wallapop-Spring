@@ -1,16 +1,11 @@
 package com.uniovi.services;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,19 +24,6 @@ public class UsersService {
 	public void init() {
 	}
 
-	@Autowired
-	private HttpSession httpSession;
-
-	@Deprecated
-	public Page<User> getUsers(Pageable pageable) {
-
-		User activeUser = (User) httpSession.getAttribute("currentlyUser");
-		Page<User> users = usersRepository.findOthersUsersWithNoThisRole(pageable, activeUser.getEmail(),
-				RolesService.getRoles()[1]);
-
-		return users;
-	}
-
 	@Deprecated
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<User>();
@@ -52,6 +34,11 @@ public class UsersService {
 	@Deprecated
 	public User getUser(Long id) {
 		return usersRepository.findById(id).get();
+	}
+
+	@Deprecated
+	public void update(User user) {
+		usersRepository.save(user);
 	}
 
 	public void addUser(User user) {
@@ -65,22 +52,6 @@ public class UsersService {
 
 	public void deleteUser(Long id) {
 		usersRepository.deleteById(id);
-	}
-
-	@Deprecated
-	public Page<User> searchByNameAndLastname(Pageable pageable, String searchText) {
-		Page<User> users = new PageImpl<User>(new LinkedList<User>());
-		searchText = "%" + searchText + "%";
-		User activeUser = (User) httpSession.getAttribute("currentlyUser");
-
-		users = usersRepository.searchByNameEmailAndLastname(pageable, searchText, activeUser.getEmail());
-
-		return users;
-	}
-
-	@Deprecated
-	public void update(User user) {
-		usersRepository.save(user);
 	}
 
 	public List<User> getUsersButOne(User activeUser) {
