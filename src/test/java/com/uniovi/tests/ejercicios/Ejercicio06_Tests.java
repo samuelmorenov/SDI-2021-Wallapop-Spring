@@ -37,6 +37,7 @@ public class Ejercicio06_Tests extends BaseTests {
 		
 		PO_NavView.accederPagina("offer-menu", "/offer/post");
 		PO_PostView.fillForm("", "Oferta Test 1 Descripcion", "10,01");		
-		//PO_View.checkKey("Error.empty", PO_Properties.getSPANISH()); //TODO Preguntar: Por que no muestra los errores
+		//PO_View.checkKey("Error.empty", PO_Properties.getSPANISH());
+		//TODO Preguntar: Por que no muestra los errores
 	}
 }

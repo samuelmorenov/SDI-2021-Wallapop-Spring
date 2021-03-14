@@ -30,6 +30,8 @@ public class UsersController extends UtilsController {
 		// Set active user
 		this.setActiveUser(model);
 		
+		//TODO Preguntar: Que hay que mostrar en la vista de perfil de usuario
+		
 		return "user/profile";
 	}
 }
