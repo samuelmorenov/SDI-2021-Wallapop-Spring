@@ -1,5 +1,7 @@
 package com.uniovi.tests.ejercicios;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -64,6 +66,7 @@ public class Ejercicio10_Tests extends BaseTests {
 		List<WebElement> botones = PO_View.checkElement("class", "comprar");
 		botones.get(0).click();
 		
+		assertTrue(false);//TODO: Mostrar mensaje de error 
 		PO_View.checkText("Saldo no suficiente");
 	}
 

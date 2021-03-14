@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
-import com.uniovi.tests.pageobjects.formularios.PO_PostView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio08_Tests extends BaseTests {
@@ -22,8 +21,6 @@ public class Ejercicio08_Tests extends BaseTests {
 	@Test
 	public void Prueba_19() {
 		PO_LoginView.loginUser0();
-		PO_PostView.addNew("Oferta Test Prueba_19 1");
-		PO_PostView.addNew("Oferta Test Prueba_19 2");
 
 		PO_NavView.accederPagina("offer-menu", "/offer/own");
 		List<WebElement> botones = PO_View.checkElement("class", "btn");
@@ -40,8 +37,6 @@ public class Ejercicio08_Tests extends BaseTests {
 	@Test
 	public void Prueba_20() {
 		PO_LoginView.loginUser0();
-		PO_PostView.addNew("Oferta Test Prueba_20 1");
-		PO_PostView.addNew("Oferta Test Prueba_20 2");
 
 		PO_NavView.accederPagina("offer-menu", "/offer/own");
 		List<WebElement> botones = PO_View.checkElement("class", "btn");

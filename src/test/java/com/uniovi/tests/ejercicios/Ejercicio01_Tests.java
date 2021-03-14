@@ -13,11 +13,6 @@ import com.uniovi.tests.pageobjects.formularios.PO_RegisterView;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio01_Tests extends BaseTests {
 
-	private static String randomEmail() {
-		//TODO: Mejor quito esto xD
-		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
-	}
-
 	/** Registro de Usuario con datos válidos. */
 	@Test
 	public void Prueba_01() {
@@ -40,7 +35,7 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_02_b() {
 		PO_NavView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), "", UserList.usuariosTest(0).lastName,
+		PO_RegisterView.fillForm("correo_prueba@email.com", "", UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
 		PO_View.checkKey("Error.signup.name.length", PO_Properties.getSPANISH());
 	}
@@ -49,7 +44,7 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_02_c() {
 		PO_NavView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, "", UserList.usuariosTest(0).password,
+		PO_RegisterView.fillForm("correo_prueba@email.com", UserList.usuariosTest(0).name, "", UserList.usuariosTest(0).password,
 				UserList.usuariosTest(0).password);
 		PO_View.checkKey("Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
@@ -60,7 +55,7 @@ public class Ejercicio01_Tests extends BaseTests {
 	@Test
 	public void Prueba_03() {
 		PO_NavView.clickOption("signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(randomEmail(), UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
+		PO_RegisterView.fillForm("correo_prueba@email.com", UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password + "e");
 		PO_View.checkKey("Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 

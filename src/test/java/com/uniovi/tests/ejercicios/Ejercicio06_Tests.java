@@ -20,10 +20,10 @@ public class Ejercicio06_Tests extends BaseTests {
 	@Test
 	public void Prueba_16() {
 		PO_LoginView.loginUser0();
-		PO_PostView.addNew("Oferta Test Prueba_16");
+		PO_PostView.addNew("Oferta Test");
 		
 		PO_NavView.accederPagina("offer-menu", "/offer/own");
-		PO_View.checkElement("text", "Oferta Test Prueba_16");
+		PO_View.checkElement("text", "Oferta Test");
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class Ejercicio06_Tests extends BaseTests {
 		PO_LoginView.loginUser0();
 		
 		PO_NavView.accederPagina("offer-menu", "/offer/post");
-		PO_PostView.fillForm("", "Oferta Test 1 Descripcion", "10,01");		
+		PO_PostView.fillForm("", "Oferta Test Descripcion", "10,01");		
 		//PO_View.checkKey("Error.empty", PO_Properties.getSPANISH());
 		//TODO Preguntar: Por que no muestra los errores
 	}

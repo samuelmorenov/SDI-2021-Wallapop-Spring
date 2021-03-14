@@ -1,5 +1,7 @@
 package com.uniovi.tests.ejercicios;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -43,7 +45,9 @@ public class Ejercicio13_Tests extends BaseTests {
 	public void Prueba_30() {
 		PO_LoginView.loginUser0();
 		driver.navigate().to(URL + "/user/list");
-		SeleniumUtils.textoPresentePagina("HTTP Status 403");
+		//PO_View.checkText("HTTP Status 403");
+		SeleniumUtils.textoPresentePagina("HTTP Status 403"); //TODO: Añadir pagina de error
+		assertTrue(false);
 		PO_View.checkNoKey("list.intro", PO_Properties.getSPANISH());
 	}
 
