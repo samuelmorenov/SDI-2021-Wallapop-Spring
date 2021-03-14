@@ -4,7 +4,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import static org.junit.Assert.fail;
+import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.pageobjects.config.PO_Properties;
+import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
+import com.uniovi.tests.util.SeleniumUtils;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio13_Tests extends BaseTests {
@@ -15,7 +18,9 @@ public class Ejercicio13_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_28() {
-		fail("Not yet implemented");
+		driver.navigate().to(URL + "/user/list");
+		PO_View.checkKey("login.login", PO_Properties.getSPANISH());
+		PO_View.checkNoKey("list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -24,7 +29,9 @@ public class Ejercicio13_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_29() {
-		fail("Not yet implemented");
+		driver.navigate().to(URL + "/user/own");
+		PO_View.checkKey("login.login", PO_Properties.getSPANISH());
+		PO_View.checkNoKey("list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -34,7 +41,10 @@ public class Ejercicio13_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_30() {
-		fail("Not yet implemented");
+		PO_LoginView.loginUser0();
+		driver.navigate().to(URL + "/user/list");
+		SeleniumUtils.textoPresentePagina("HTTP Status 403");
+		PO_View.checkNoKey("list.intro", PO_Properties.getSPANISH());
 	}
 
 }
