@@ -64,7 +64,7 @@ public class HomeController extends UtilsController{
 	@RequestMapping(value = "/login")
 	public String login(Model model) {
 		LOG.info("Accediendo a /login por el metodo GET");
-		this.setActiveUser(model);
+		//this.setActiveUser(model);
 		return "login";
 	}
 }

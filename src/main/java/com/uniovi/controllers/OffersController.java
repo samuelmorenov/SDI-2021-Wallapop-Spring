@@ -40,7 +40,7 @@ public class OffersController extends UtilsController {
 	public String offer_post_GET(Model model) {
 		LOG.info("Accediendo a /offer/post por el metodo GET");
 		// Set active user
-		this.setActiveUser(model);
+		//TODO this.setActiveUser(model);
 		model.addAttribute("offer", new Offer());
 		LOG.info("Añadido nueva oferta al modelo");
 		return "offer/post";
