@@ -6,8 +6,8 @@ import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_NavView;
-import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.pageobjects.config.PO_Properties;
 import com.uniovi.tests.pageobjects.formularios.PO_RegisterView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

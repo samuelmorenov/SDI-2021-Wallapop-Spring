@@ -8,6 +8,7 @@ import org.junit.runners.MethodSorters;
 
 import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_Search;
+import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -21,12 +22,12 @@ public class Ejercicio09_Tests extends BaseTests {
 	public void Prueba_21() {
 		PO_LoginView.loginUser0();
 		PO_NavView.accederPagina("offer-menu", "/offer/all");
-		int total = PO_NavView.checkElement("class", "fila").size();
+		int total = PO_View.checkElement("class", "fila").size();
 
 		PO_NavView.accederPagina("offer-menu", "/offer/all");
 		PO_Search.search("");
 
-		int parcial = PO_NavView.checkElement("class", "fila").size();
+		int parcial = PO_View.checkElement("class", "fila").size();
 
 		assertTrue(total == parcial);
 	}
@@ -42,7 +43,7 @@ public class Ejercicio09_Tests extends BaseTests {
 		PO_NavView.accederPagina("offer-menu", "/offer/all");
 		PO_Search.search("NombreInexistente");
 
-		PO_NavView.checkNoElement("class", "fila");
+		PO_View.checkNoElement("class", "fila");
 	}
 
 }

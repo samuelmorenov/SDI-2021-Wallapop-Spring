@@ -2,36 +2,12 @@ package com.uniovi.tests.pageobjects;
 
 import java.util.List;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.uniovi.tests.DriverSingleton;
+import com.uniovi.tests.pageobjects.config.PO_Config;
 import com.uniovi.tests.util.SeleniumUtilsV2;
 
-public class PO_View {
-	protected static PO_Properties p = new PO_Properties("messages");
-	protected static int timeout = 2;
-
-	protected static WebDriver driver = DriverSingleton.getDriver();
-
-	public static int getTimeout() {
-		return timeout;
-	}
-
-	@Deprecated
-	public static void setTimeout(int timeout) {
-		PO_View.timeout = timeout;
-	}
-
-	@Deprecated
-	public static PO_Properties getP() {
-		return p;
-	}
-
-	@Deprecated
-	public static void setP(PO_Properties p) {
-		PO_View.p = p;
-	}
+public class PO_View extends PO_Config {
 
 	/**
 	 * Espera por la visibilidad de un texto correspondiente a la propiedad key en
@@ -44,11 +20,11 @@ public class PO_View {
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
 	static public List<WebElement> checkKey(String key, int locale) {
-		return SeleniumUtilsV2.EsperaCargaPagina("text", p.getString(key, locale), getTimeout());
+		return SeleniumUtilsV2.EsperaCargaPagina("text", getP().getString(key, locale), getTimeout());
 	}
 
 	static public void checkNoKey(String key, int locale) {
-		SeleniumUtilsV2.NoEsperaCargaPagina("text", p.getString(key, locale), getTimeout());
+		SeleniumUtilsV2.NoEsperaCargaPagina("text", getP().getString(key, locale), getTimeout());
 	}
 
 	/**

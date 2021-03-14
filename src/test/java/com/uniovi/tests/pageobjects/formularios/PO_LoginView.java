@@ -5,8 +5,9 @@ import org.openqa.selenium.WebElement;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.config.PO_Config;
 
-public class PO_LoginView extends PO_NavView {
+public class PO_LoginView extends PO_Config {
 	static public void fillForm(String emailp, String passwordp) {
 
 		WebElement email = driver.findElement(By.name("username"));

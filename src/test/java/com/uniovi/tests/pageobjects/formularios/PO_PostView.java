@@ -4,8 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.config.PO_Config;
 
-public class PO_PostView extends PO_NavView {
+public class PO_PostView extends PO_Config {
 
 	public static void fillForm(String titlep, String descriptionp, String pricep) {
 		WebElement title = driver.findElement(By.name("title"));

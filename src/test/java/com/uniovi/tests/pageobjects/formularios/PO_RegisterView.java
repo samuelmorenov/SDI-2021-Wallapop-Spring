@@ -3,9 +3,9 @@ package com.uniovi.tests.pageobjects.formularios;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.config.PO_Config;
 
-public class PO_RegisterView extends PO_NavView {
+public class PO_RegisterView extends PO_Config {
 	static public void fillForm(String emailp, String namep, String lastnamep, String passwordp,
 			String passwordconfp) {
 		WebElement email = driver.findElement(By.name("email"));

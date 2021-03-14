@@ -1,4 +1,4 @@
-package com.uniovi.tests.pageobjects;
+package com.uniovi.tests.pageobjects.config;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
@@ -9,7 +9,6 @@ public class PO_Properties {
 		return SPANISH;
 	}
 
-	@Deprecated
 	public static int getENGLISH() {
 		return ENGLISH;
 	}

@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
-public class PO_NavView extends PO_View {
+
+public class PO_NavView {
 
 	/**
 	 * CLicka una de las opciones principales (a href) y comprueba que se vaya a la
@@ -50,7 +51,6 @@ public class PO_NavView extends PO_View {
 	 * @param textLanguage: el texto que aparece en el enlace de idioma ("English" o
 	 *        "Spanish")
 	 */
-	@Deprecated
 	public static void changeIdiom(String textLanguage) {
 		// clickamos la opción Idioma.
 		List<WebElement> elementos = PO_View.checkElement("id", "btnLanguage");

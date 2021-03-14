@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_Search;
+import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -26,9 +27,9 @@ public class Ejercicio10_Tests extends BaseTests {
 		
 		
 		PO_Search.search("Oferta 5");
-		List<WebElement> botones = PO_NavView.checkElement("class", "comprar");
+		List<WebElement> botones = PO_View.checkElement("class", "comprar");
 		botones.get(0).click();
-		PO_NavView.checkText("14.0");
+		PO_View.checkText("14.0");
 		
 	}
 
@@ -43,10 +44,10 @@ public class Ejercicio10_Tests extends BaseTests {
 		PO_NavView.accederPagina("offer-menu", "/offer/all");
 		PO_Search.search("Oferta 4");
 
-		List<WebElement> botones = PO_NavView.checkElement("class", "comprar");
+		List<WebElement> botones = PO_View.checkElement("class", "comprar");
 		botones.get(0).click();
 		
-		PO_NavView.checkText("0.0");
+		PO_View.checkText("0.0");
 	}
 
 	/**
@@ -60,10 +61,10 @@ public class Ejercicio10_Tests extends BaseTests {
 		PO_NavView.accederPagina("offer-menu", "/offer/all");
 		PO_Search.search("Oferta 6");
 
-		List<WebElement> botones = PO_NavView.checkElement("class", "comprar");
+		List<WebElement> botones = PO_View.checkElement("class", "comprar");
 		botones.get(0).click();
 		
-		PO_NavView.checkText("Saldo no suficiente");
+		PO_View.checkText("Saldo no suficiente");
 	}
 
 }
