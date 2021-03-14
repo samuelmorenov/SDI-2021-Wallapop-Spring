@@ -31,18 +31,18 @@ public class InsertSampleDataService {
 	private void initOffer() {
 		Offer offer1 = new Offer("Oferta 1", "Descipcion de la oferta 1", 11.0);
 		offer1.setCreator(usersService.getUserByEmail((UserList.usuarios(0).email)));
-		offer1.setBuyer(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		offer1.setBuyer(usersService.getUserByEmail((UserList.usuarios(5).email)));
 		Offer offer2 = new Offer("Oferta 2", "Descipcion de la oferta 2", 12.0);
-		offer2.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		offer2.setCreator(usersService.getUserByEmail((UserList.usuarios(5).email)));
 		offer2.setBuyer(usersService.getUserByEmail((UserList.usuarios(0).email)));
 		Offer offer3 = new Offer("Oferta 3", "Descipcion de la oferta 3", 13.0);
 		offer3.setCreator(usersService.getUserByEmail((UserList.usuarios(0).email)));
 		Offer offer4 = new Offer("Oferta 4", "Descipcion de la oferta 4", 14.0);
-		offer4.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		offer4.setCreator(usersService.getUserByEmail((UserList.usuarios(5).email)));
 		Offer offer5 = new Offer("Oferta 5", "Descipcion de la oferta 5", 86.0);
-		offer5.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		offer5.setCreator(usersService.getUserByEmail((UserList.usuarios(5).email)));
 		Offer offer6 = new Offer("Oferta 6", "Descipcion de la oferta 6", 100.0);
-		offer6.setCreator(usersService.getUserByEmail((UserList.usuarios(1).email)));
+		offer6.setCreator(usersService.getUserByEmail((UserList.usuarios(5).email)));
 
 		offersService.addOffer(offer1);
 		offersService.addOffer(offer2);
