@@ -7,7 +7,8 @@
 	<div class="container">
 		<h2 th:text="#{offer.post.title}"></h2>
 
-		<form class="form-horizontal" method="post" action="/offer/post">
+		<form class="form-horizontal" method="post" action="/offer/post"
+			th:object="${offer}">
 
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title"
@@ -16,9 +17,8 @@
 					<input type="text" class="form-control" name="title"
 						th:placeholder="#{offer.title.placeholder}" />
 					<!-- -->
-					<span class="text-danger" 
-						th:if="${#fields.hasErrors('offer.title')}"
-						th:errors="*{title}" />
+					<span class="text-danger" th:if="${#fields.hasErrors('title')}"
+						th:errors="*{title}"></span>
 				</div>
 			</div>
 
@@ -30,7 +30,7 @@
 						th:placeholder="#{offer.description.placeholder}" />
 					<!-- -->
 					<span class="text-danger"
-						th:if="${#fields.hasErrors('offer.description')}"
+						th:if="${#fields.hasErrors('description')}"
 						th:errors="*{description}"></span>
 				</div>
 			</div>
@@ -42,8 +42,8 @@
 					<input type="number" step=.01 class="form-control" name="price"
 						th:placeholder="#{offer.price.placeholder}" />
 					<!-- -->
-					<span class="text-danger" th:if="${#fields.hasErrors('offer.price')}"
-						th:errors="*{price}"></span> 
+					<span class="text-danger" th:if="${#fields.hasErrors('price')}"
+						th:errors="*{price}"></span>
 				</div>
 			</div>
 

@@ -56,9 +56,6 @@ public class OffersController extends UtilsController {
 		offerValidator.validate(offer, result);
 		if (result.hasErrors()) {
 			LOG.error("La oferta proporcionada en el formulario no es valida");
-			// Set active user
-			this.setActiveUser(model);
-			model.addAttribute("offer", new Offer());
 			return "offer/post";
 		}
 		offer.setCreator(activeUser);
