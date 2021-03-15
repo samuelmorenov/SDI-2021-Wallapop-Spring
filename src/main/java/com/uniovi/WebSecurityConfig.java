@@ -62,7 +62,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 		.logout()
 			.permitAll();
-		//TODO Preguntar: Como hacer la pagina de errores
 	}
 
 	@Autowired

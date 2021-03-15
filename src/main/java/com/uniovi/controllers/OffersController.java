@@ -163,11 +163,21 @@ public class OffersController extends UtilsController {
 			LOG.error("Hay errores en la oferta y no se ha podido comprar: "+id);
 			// TODO: Mirar como hacer que se guarde la busqueda y la paginacion entre
 			// TODO: Mostrar mensaje de error
-			return "redirect:/offer/all";
+			return "redirect:/offer/buy/error";
 		}
 
 		LOG.info("Se ha comprado con exito la oferta "+id+" por el usurio: "+activeUser.getEmail());
 		return "redirect:/offer/purchased";
+
+	}
+	
+	@RequestMapping(value = "/offer/buy/error", method = RequestMethod.GET)
+	public String offer_buy_error_GET(Model model) {
+		LOG.info("Accediendo a /offer/buy/error por el metodo POST");
+		// Set active user
+		this.setActiveUser(model);
+
+		return "errors/buy";
 
 	}
 

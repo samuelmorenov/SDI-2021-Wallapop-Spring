@@ -1,7 +1,5 @@
 package com.uniovi.tests.ejercicios;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -12,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_Search;
 import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.pageobjects.config.PO_Properties;
 import com.uniovi.tests.pageobjects.formularios.PO_LoginView;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -66,8 +65,7 @@ public class Ejercicio10_Tests extends BaseTests {
 		List<WebElement> botones = PO_View.checkElement("class", "comprar");
 		botones.get(0).click();
 		
-		assertTrue(false);//TODO: Mostrar mensaje de error 
-		PO_View.checkText("Saldo no suficiente");
+		PO_View.checkKey("offer.buy.error.message", PO_Properties.getSPANISH());
 	}
 
 }
