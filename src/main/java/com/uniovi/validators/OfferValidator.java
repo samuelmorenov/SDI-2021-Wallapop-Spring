@@ -17,7 +17,6 @@ public class OfferValidator implements Validator{
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		//TODO Preguntar: Por que no muestra los errores
 		Offer offer = (Offer) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "Error.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "Error.empty");
