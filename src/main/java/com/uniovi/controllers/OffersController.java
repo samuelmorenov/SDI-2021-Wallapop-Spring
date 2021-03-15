@@ -77,8 +77,6 @@ public class OffersController extends UtilsController {
 		User activeUser = this.setActiveUser(model);
 
 		// Paginacion y busqueda
-		// TODO: Mirar como hacer que se guarde la busqueda y la paginacion entre
-		// paginas
 		Page<Offer> offers = new PageImpl<Offer>(new LinkedList<Offer>());
 		if (searchText != null && !searchText.isEmpty()) {
 			offers = offersService.getAllOffersByTitle(pageable, searchText);
@@ -161,8 +159,6 @@ public class OffersController extends UtilsController {
 
 		if (errores) {
 			LOG.error("Hay errores en la oferta y no se ha podido comprar: "+id);
-			// TODO: Mirar como hacer que se guarde la busqueda y la paginacion entre
-			// TODO: Mostrar mensaje de error
 			return "redirect:/offer/buy/error";
 		}
 

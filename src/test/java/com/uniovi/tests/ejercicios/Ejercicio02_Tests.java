@@ -17,14 +17,14 @@ public class Ejercicio02_Tests extends BaseTests {
 	@Test
 	public void Prueba_05() {
 		PO_LoginView.loginAdmin();
-		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
+		PO_View.checkKey("user.profile.wellcome", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar). */
 	@Test
 	public void Prueba_06() {
 		PO_LoginView.loginUser0();
-		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
+		PO_View.checkKey("user.profile.wellcome", PO_Properties.getSPANISH());
 	}
 
 	/**

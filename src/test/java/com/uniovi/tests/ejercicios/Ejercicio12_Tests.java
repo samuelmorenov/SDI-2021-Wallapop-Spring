@@ -26,7 +26,7 @@ public class Ejercicio12_Tests extends BaseTests {
 		// Opciones principales de usuario
 		PO_LoginView.loginUser0();
 		PO_NavView.accederPagina("user-profile", "/user/profile");
-		PO_Language.checkChangeIdiom("welcome.message");
+		PO_Language.checkChangeIdiom("user.profile.wellcome", "user.profile.intro");
 		PO_NavView.logout();
 
 		// Listado de usuarios

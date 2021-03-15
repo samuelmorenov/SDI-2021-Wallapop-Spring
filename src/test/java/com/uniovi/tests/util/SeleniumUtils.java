@@ -80,7 +80,6 @@ public class SeleniumUtils {
 	 * @param driver: apuntando al navegador abierto actualmente.
 	 * @param texto: texto a buscar
 	 */
-	@Deprecated
 	static public void textoPresentePagina(String texto)
 	{
 		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + texto + "')]"));		

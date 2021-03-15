@@ -20,7 +20,7 @@ public class Ejercicio01_Tests extends BaseTests {
 		PO_NavView.clickOption("signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(UserList.usuariosTest(0).email, UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
-		PO_View.checkKey("welcome.message", PO_Properties.getSPANISH());
+		PO_View.checkKey("user.profile.wellcome", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: email vacío */

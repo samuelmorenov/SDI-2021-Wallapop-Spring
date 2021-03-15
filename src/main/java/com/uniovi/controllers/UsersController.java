@@ -54,8 +54,6 @@ public class UsersController extends UtilsController {
 		// Set active user
 		this.setActiveUser(model);
 
-		// TODO Añadir lista de ofertas creadas
-
 		return "user/profile";
 	}
 }

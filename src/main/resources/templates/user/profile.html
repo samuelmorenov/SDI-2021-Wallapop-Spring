@@ -3,8 +3,32 @@
 <head th:replace="fragments/head" />
 <body>
 	<nav th:replace="fragments/nav" />
-	<div class="container" style="text-align: center">
-		<h2 th:text="#{welcome.message}"></h2>
+	<div class="container">
+		<h2 th:text="#{user.profile.wellcome}"></h2>
+		<p th:text="#{user.profile.intro}"></p>
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{common.user.nombre}"></div>
+			<div class="panel-body" th:text="${currentlyUser.name}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{user.profile.money}"></div>
+			<div class="panel-body" th:text="${currentlyUser.money}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{user.profile.propio}"></div>
+			<div class="panel-body">
+				<a href="/offer/own" th:text="#{user.profile.enlace}"
+					class="btn btn-primary"></a>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" th:text="#{user.profile.comprado}"></div>
+			<div class="panel-body">
+				<a href="/offer/purchased" th:text="#{user.profile.enlace}"
+					class="btn btn-primary"></a>
+			</div>
+		</div>
+
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>
