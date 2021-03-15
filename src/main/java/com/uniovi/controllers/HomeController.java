@@ -32,10 +32,7 @@ public class HomeController extends UtilsController{
 
 	@RequestMapping("/")
 	public String index(Model model) {
-		LOG.info("Redireccionado de index a /user/profile");
-		// Set active user
-		this.setActiveUser(model);
-		
+		LOG.info("Redireccionado de index a /user/profile");		
 		return "redirect:/user/profile";
 	}
 
@@ -71,10 +68,7 @@ public class HomeController extends UtilsController{
 
 	@RequestMapping(value = "/login")
 	public String login(Model model) {
-		LOG.info("Accediendo a /login por el metodo GET");		
-		// Set active user
-		this.setActiveUser(model);
-		
+		LOG.info("Accediendo a /login por el metodo GET");
 		return "login";
 	}
 }
