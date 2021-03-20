@@ -25,6 +25,7 @@
 						<th th:text="#{offer.title}"></th>
 						<th th:text="#{offer.description}"></th>
 						<th th:text="#{offer.price}"></th>
+						<th th:text="#{offer.date}"></th>
 						<th class="col-md-1"></th>
 
 					</tr>
@@ -34,6 +35,7 @@
 						<td th:text="${offer.title}"></td>
 						<td th:text="${offer.description}"></td>
 						<td th:text="${offer.price}"></td>
+						<td th:text="${offer.date}"></td>
 						
 						<td>
 							<div th:if='${#bools.isTrue(#lists.contains(offersPurchased, offer))}'>
