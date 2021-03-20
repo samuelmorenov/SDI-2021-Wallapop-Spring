@@ -1,7 +1,6 @@
 package com.uniovi.controllers;
 
 import java.security.Principal;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class OffersController extends UtilsController {
 		LOG.info("Accediendo a /offer/post por el metodo GET");
 		// Set active user
 		this.setActiveUser(model);
-		
+
 		model.addAttribute("offer", new Offer());
 		LOG.info("Añadido nueva oferta al modelo");
 		return "offer/post";
@@ -52,19 +51,14 @@ public class OffersController extends UtilsController {
 		LOG.info("Accediendo a /offer/post por el metodo GET");
 		// Set active user
 		User activeUser = this.setActiveUser(model);
-		
+
 		offerValidator.validate(offer, result);
 		if (result.hasErrors()) {
 			LOG.error("La oferta proporcionada en el formulario no es valida");
 			return "offer/post";
 		}
-		offer.setCreator(activeUser);
-		LOG.info("Se ha establecido el creador de la oferta ("+offer.getTitle()+") a "+activeUser.getEmail());
-		Date now = new Date();
-		offer.setDate(now);
-		LOG.info("Se ha establecido la fecha de la oferta ("+offer.getTitle()+") a "+now.toString());
-		offersService.addOffer(offer);
-		LOG.info("Se ha añadido la oferta ("+offer.getTitle()+") al sistema");
+		offersService.addOffer(offer, activeUser);
+		LOG.info("Se ha añadido la oferta (" + offer.getTitle() + ") al sistema");
 		return "redirect:/offer/own";
 	}
 
@@ -94,11 +88,11 @@ public class OffersController extends UtilsController {
 
 		List<Offer> offersPurchased = offersService.getPurchasedOffers(activeUser);
 		model.addAttribute("offersPurchased", offersPurchased);
-		LOG.info("Añadido la lista de ofertas compradas al Model del usuario: "+activeUser.getEmail());
+		LOG.info("Añadido la lista de ofertas compradas al Model del usuario: " + activeUser.getEmail());
 
 		List<Offer> offersOwn = offersService.getOwnOffers(activeUser);
 		model.addAttribute("offersOwn", offersOwn);
-		LOG.info("Añadido la lista de creadas compradas al Model del usuario: "+activeUser.getEmail());
+		LOG.info("Añadido la lista de creadas compradas al Model del usuario: " + activeUser.getEmail());
 
 		return "offer/all";
 	}
@@ -110,7 +104,7 @@ public class OffersController extends UtilsController {
 		User activeUser = this.setActiveUser(model);
 
 		model.addAttribute("offersList", offersService.getOwnOffers(activeUser));
-		LOG.info("Añadido la lista de creadas compradas al Model del usuario: "+activeUser.getEmail());
+		LOG.info("Añadido la lista de creadas compradas al Model del usuario: " + activeUser.getEmail());
 		return "offer/own";
 	}
 
@@ -121,7 +115,7 @@ public class OffersController extends UtilsController {
 		User activeUser = this.setActiveUser(model);
 
 		model.addAttribute("offersList", offersService.getPurchasedOffers(activeUser));
-		LOG.info("Añadido la lista de ofertas compradas al Model del usuario: "+activeUser.getEmail());
+		LOG.info("Añadido la lista de ofertas compradas al Model del usuario: " + activeUser.getEmail());
 		return "offer/purchased";
 	}
 
@@ -129,44 +123,41 @@ public class OffersController extends UtilsController {
 	public String offer_delete_POST(@RequestParam Long OfferId, Model model, Principal principal) {
 		LOG.info("Accediendo a /offer/delete por el metodo POST");
 		// Set active user
-		this.setActiveUser(model);
+		User activeUser = this.setActiveUser(model);
 
-		Offer offer = offersService.getOfferById(OfferId);
-		if(offer == null) {
-			LOG.error("Se ha intentado borrar una oferta que no exite: "+OfferId);
+		boolean borradoCorrecto = offersService.delete(OfferId, activeUser);
+
+		if (!borradoCorrecto) {
 			return "redirect:/offer/own";
 		}
-		offersService.delete(offer);
-		LOG.info("Eliminada offerta con id: "+OfferId);
-		
 
 		return "offer/own";
 	}
 
 	@RequestMapping(value = "/offer/buy/{id}", method = RequestMethod.POST)
 	public String offer_buy_POST(@PathVariable Long id, Model model, Principal principal) {
-		LOG.info("Accediendo a /offer/buy/"+id+" por el metodo POST");
+		LOG.info("Accediendo a /offer/buy/" + id + " por el metodo POST");
 		// Set active user
 		User activeUser = this.setActiveUser(model);
 
 		Offer offer = offersService.getOfferById(id);
-		if(offer == null) {
-			LOG.error("Se ha intentado comprar una oferta que no exite: "+id);
+		if (offer == null) {
+			LOG.error("Se ha intentado comprar una oferta que no exite: " + id);
 			return "redirect:/offer/all";
 		}
 
 		boolean errores = !offersService.buy(activeUser, offer);
 
 		if (errores) {
-			LOG.error("Hay errores en la oferta y no se ha podido comprar: "+id);
+			LOG.error("Hay errores en la oferta y no se ha podido comprar: " + id);
 			return "redirect:/offer/buy/error";
 		}
 
-		LOG.info("Se ha comprado con exito la oferta "+id+" por el usurio: "+activeUser.getEmail());
+		LOG.info("Se ha comprado con exito la oferta " + id + " por el usurio: " + activeUser.getEmail());
 		return "redirect:/offer/purchased";
 
 	}
-	
+
 	@RequestMapping(value = "/offer/buy/error", method = RequestMethod.GET)
 	public String offer_buy_error_GET(Model model) {
 		LOG.info("Accediendo a /offer/buy/error por el metodo POST");

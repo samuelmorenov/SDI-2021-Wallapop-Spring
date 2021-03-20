@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ import com.uniovi.repositories.UsersRepository;
 
 @Service
 public class UsersService {
+
+	final static Logger LOG = LoggerFactory.getLogger(UsersService.class);
+
 	@Autowired
 	private UsersRepository usersRepository;
 
@@ -56,6 +61,20 @@ public class UsersService {
 
 	public List<User> getUsersButOne(User activeUser) {
 		return usersRepository.findAllButOne(activeUser);
+	}
+
+	public void deleteUsers(String[] emails) {
+		for (int i = 0; i < emails.length; i++) {
+			User user = getUserByEmail(emails[i]);
+			if (user == null) {
+				LOG.error("Se ha intentado borrar un usuario que no exite: " + emails[i]);
+				continue;
+			}
+			String email = user.getEmail();
+			deleteUser(user.getId());
+			LOG.info("Se ha eliminado el usuario " + email);
+		}
+
 	}
 
 }

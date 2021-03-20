@@ -23,16 +23,8 @@ public class UsersController extends UtilsController {
 		// Set active user
 		this.setActiveUser(model);
 		
-		for (int i = 0; i < checkbox.length; i++) {
-			User user = usersService.getUserByEmail(checkbox[i]);
-			if(user == null) {
-				LOG.error("Se ha intentado borrar un usuario que no exite: "+checkbox[i]);
-				continue;
-			}
-			String email = user.getEmail();
-			usersService.deleteUser(user.getId());
-			LOG.info("Se ha eliminado el usuario "+email);
-		}
+		usersService.deleteUsers(checkbox);
+		
 		return "redirect:/user/list";
 	}
 
@@ -50,6 +42,7 @@ public class UsersController extends UtilsController {
 
 	@RequestMapping("/user/profile")
 	public String index(Model model) {
+		
 		LOG.info("Accediendo a /user/profile por el metodo GET");
 		// Set active user
 		this.setActiveUser(model);
